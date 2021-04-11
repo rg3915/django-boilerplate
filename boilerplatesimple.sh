@@ -99,7 +99,7 @@ cd ..
 
 # ********** EDITING FILES **********
 echo "${green}>>> Editing settings.py${reset}"
-cp -r /tmp/django-boilerplate-simple/settings.py/ $PROJECT/
+cp /tmp/django-boilerplate-simple/settings.py $PROJECT/
 sed -i "s/{PROJECT}/$PROJECT/g" $PROJECT/settings.py
 
 
