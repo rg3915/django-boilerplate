@@ -51,3 +51,42 @@ cp /tmp/django-boilerplate-simple/boilerplatesimple.sh .
 printf "Type:\n`tput setaf 2`source boilerplatesimple.sh myproject\n"'
 ```
 
+### Folders
+
+```
+.
+├── manage.py
+├── myproject
+│   ├── asgi.py
+│   ├── accounts
+│   │   ├── admin.py
+│   │   ├── apps.py
+│   │   ├── models.py
+│   │   ├── tests.py
+│   │   ├── urls.py
+│   │   └── views.py
+│   ├── core
+│   │   ├── admin.py
+│   │   ├── apps.py
+│   │   ├── management
+│   │   │   └── commands
+│   │   │       ├── hello.py
+│   │   │       └── __init__.py
+│   │   ├── models.py
+│   │   ├── tests.py
+│   │   ├── urls.py
+│   │   └── views.py
+│   ├── crm
+│   │   ├── admin.py
+│   │   ├── apps.py
+│   │   ├── forms.py
+│   │   ├── models.py
+│   │   ├── tests.py
+│   │   ├── urls.py
+│   │   └── views.py
+│   ├── settings.py
+│   ├── urls.py
+│   └── wsgi.py
+├── README.md
+└── requirements.txt
+```
