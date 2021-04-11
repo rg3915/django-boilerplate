@@ -104,8 +104,32 @@ cd ..
 
 # ********** EDITING FILES **********
 echo "${green}>>> Editing settings.py${reset}"
-cp /tmp/django-boilerplate-simple/settings.py $PROJECT/
+cp /tmp/django-boilerplate-simple/settings/settings.py $PROJECT/
+
+# Junta os arquivos
+# DATABASES
+if [[ $response == '2' ]]; then
+    cat /tmp/django-boilerplate-simple/settings/settings_databases2.py >> $PROJECT/settings.py
+else
+    cat /tmp/django-boilerplate-simple/settings/settings_databases3.py >> $PROJECT/settings.py
+fi
+
+cat /tmp/django-boilerplate-simple/settings/settings_part_2.py >> $PROJECT/settings.py
+
+# Substitui o nome do projeto.
 sed -i "s/{PROJECT}/$PROJECT/g" $PROJECT/settings.py
+sed -i "s/{DJANGO_VERSION}/$DJANGO_VERSION/g" $PROJECT/settings.py
+
+# Troca import, BASE_DIR
+if [[ $response == '2' ]]; then
+    sed -i "s/{LINK_VERSION}/2.2/g" $PROJECT/settings.py
+    sed -i "s/SETTINGS_IMPORT/import os/g" $PROJECT/settings.py
+    sed -i "s/SETTINGS_BASE_DIR/BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))/g" $PROJECT/settings.py
+else
+    sed -i "s/{LINK_VERSION}/3.1/g" $PROJECT/settings.py
+    sed -i "s/SETTINGS_IMPORT/from pathlib import Path/g" $PROJECT/settings.py
+    sed -i "s/SETTINGS_BASE_DIR/BASE_DIR = Path(__file__).resolve().parent.parent/g" $PROJECT/settings.py
+fi
 
 read -p "Replace LANGUAGE_CODE to pt-br? [Y/n] " response
 response=${response:-Y}
