@@ -80,3 +80,20 @@ cp -r /tmp/django-boilerplate-simple/contrib/ .
 
 echo "${green}>>> Running contrib/env_gen.py${reset}"
 python contrib/env_gen.py
+
+# Create project
+echo "${green}>>> Creating the project '$PROJECT' ...${reset}"
+django-admin.py startproject $PROJECT .
+cd $PROJECT
+echo "${green}>>> Creating the app 'core' ...${reset}"
+python ../manage.py startapp core
+
+echo "${green}>>> Creating the app 'accounts' ...${reset}"
+python ../manage.py startapp accounts
+
+echo "${green}>>> Creating the app 'crm' ...${reset}"
+python ../manage.py startapp crm
+
+# up one level
+cd ..
+
