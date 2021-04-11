@@ -102,20 +102,6 @@ echo "${green}>>> Editing settings.py${reset}"
 cp /tmp/django-boilerplate-simple/settings.py $PROJECT/
 sed -i "s/{PROJECT}/$PROJECT/g" $PROJECT/settings.py
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 read -p "Replace LANGUAGE_CODE to pt-br? [Y/n] " response
 response=${response:-Y}
 if [[ $response == 'Y' || $response == 'y' ]]; then
@@ -125,3 +111,16 @@ if [[ $response == 'Y' || $response == 'y' ]]; then
     sed -i "s/UTC/America\/Sao_Paulo/g" $PROJECT/settings.py
 fi
 
+echo "${green}>>> Editing urls.py${reset}"
+cat << EOF > $PROJECT/urls.py
+from django.urls import include, path
+from django.contrib import admin
+
+
+urlpatterns = [
+    path('', include('$PROJECT.core.urls', namespace='core')),
+    path('accounts/', include('$PROJECT.accounts.urls')),  # without namespace
+    path('crm/', include('$PROJECT.crm.urls', namespace='crm')),
+    path('admin/', admin.site.urls),
+]
+EOF
