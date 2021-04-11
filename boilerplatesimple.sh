@@ -1,4 +1,4 @@
-# Shell script to create a very simple Django project.
+# Shell script to create a Django project.
 
 # Usage:
 # Type the following command, you can change the project name.
@@ -30,7 +30,7 @@ echo "${green}>>> You chose Django $DJANGO_VERSION.${reset}"
 echo "${green}>>> The name of the project is '$PROJECT'.${reset}"
 
 echo "${green}>>> Creating .gitignore${reset}"
-cp /tmp/django-boilerplate-simple/.gitignore .
+cp /tmp/django-boilerplate/.gitignore .
 
 echo "${green}>>> Creating README.md${reset}"
 cat << EOF > README.md
@@ -81,7 +81,7 @@ pip freeze | grep isort >> requirements.txt
 pip freeze | grep python-decouple >> requirements.txt
 
 echo "${green}>>> Creating contrib/env_gen.py${reset}"
-cp -r /tmp/django-boilerplate-simple/contrib/ .
+cp -r /tmp/django-boilerplate/contrib/ .
 
 echo "${green}>>> Running contrib/env_gen.py${reset}"
 python contrib/env_gen.py
@@ -104,7 +104,7 @@ cd ..
 
 # ********** EDITING FILES **********
 echo "${green}>>> Editing settings.py${reset}"
-cp /tmp/django-boilerplate-simple/settings.py $PROJECT/
+cp /tmp/django-boilerplate/settings.py $PROJECT/
 
 # Substitui o nome do projeto.
 sed -i "s/{PROJECT}/$PROJECT/g" $PROJECT/settings.py
@@ -164,7 +164,7 @@ EOF
 
 # ********** EDITING core **********
 echo "${green}>>> Editing core/models.py${reset}"
-cp /tmp/django-boilerplate-simple/models.py $PROJECT/core/models.py
+cp /tmp/django-boilerplate/models.py $PROJECT/core/models.py
 
 echo "${green}>>> Editing core/urls.py${reset}"
 cat << EOF > $PROJECT/core/urls.py

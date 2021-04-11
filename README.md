@@ -1,6 +1,6 @@
-# django-boilerplate-simple
+# django-boilerplate
 
-#### Simple Boilerplate to create Django project.
+#### Boilerplate to create Django project.
 
 This boilerplate creates a simple Django project with a core app and some pre-defined settings.
 
@@ -29,9 +29,9 @@ Packages used in conjunction with Django.
 This script run in Unix.
 
 ```
-git clone https://github.com/rg3915/django-boilerplate-simple.git /tmp/django-boilerplate-simple
+git clone https://github.com/rg3915/django-boilerplate.git /tmp/django-boilerplate
 # Copy this file to your actual folder.
-cp /tmp/django-boilerplate-simple/boilerplatesimple.sh .
+cp /tmp/django-boilerplate/boilerplatesimple.sh .
 ```
 
 Type the following command. You can change the project name.
@@ -46,8 +46,8 @@ source boilerplatesimple.sh myproject
 If yout want to use a alias.
 
 ```
-alias bsimple='git clone https://github.com/rg3915/django-boilerplate-simple.git /tmp/django-boilerplate-simple;
-cp /tmp/django-boilerplate-simple/boilerplatesimple.sh .
+alias bsimple='git clone https://github.com/rg3915/django-boilerplate.git /tmp/django-boilerplate;
+cp /tmp/django-boilerplate/boilerplatesimple.sh .
 printf "Type:\n`tput setaf 2`source boilerplatesimple.sh myproject\n"'
 ```
 
