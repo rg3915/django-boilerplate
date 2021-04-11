@@ -129,6 +129,8 @@ else
     sed -i "s/{LINK_VERSION}/3.1/g" $PROJECT/settings.py
     sed -i "s/SETTINGS_IMPORT/from pathlib import Path/g" $PROJECT/settings.py
     sed -i "s/SETTINGS_BASE_DIR/BASE_DIR = Path(__file__).resolve().parent.parent/g" $PROJECT/settings.py
+    # Deleta linha desnecessária.
+    sed '/dj_database_url/d' $PROJECT/settings.py
 fi
 
 read -p "Replace LANGUAGE_CODE to pt-br? [Y/n] " response
