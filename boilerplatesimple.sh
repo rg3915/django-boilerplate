@@ -104,17 +104,7 @@ cd ..
 
 # ********** EDITING FILES **********
 echo "${green}>>> Editing settings.py${reset}"
-cp /tmp/django-boilerplate-simple/settings/settings.py $PROJECT/
-
-# Junta os arquivos
-# DATABASES
-if [[ $response == '2' ]]; then
-    cat /tmp/django-boilerplate-simple/settings/settings_databases2.py >> $PROJECT/settings.py
-else
-    cat /tmp/django-boilerplate-simple/settings/settings_databases3.py >> $PROJECT/settings.py
-fi
-
-cat /tmp/django-boilerplate-simple/settings/settings_part_2.py >> $PROJECT/settings.py
+cp /tmp/django-boilerplate-simple/settings.py $PROJECT/
 
 # Substitui o nome do projeto.
 sed -i "s/{PROJECT}/$PROJECT/g" $PROJECT/settings.py
