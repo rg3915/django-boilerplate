@@ -10,14 +10,13 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/{LINK_VERSION}/ref/settings/
 """
 
-SETTINGS_IMPORT
-
+# SETTINGS_IMPORT
 from decouple import Csv, config
 from dj_database_url import parse as dburl
 
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
-SETTINGS_BASE_DIR
+# SETTINGS_BASE_DIR
 
 
 # Quick-start development settings - unsuitable for production
@@ -83,7 +82,7 @@ WSGI_APPLICATION = '{PROJECT}.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/{LINK_VERSION}/ref/settings/#databases
 
-{DEFAULT_DBURL}
+# DEFAULT_DBURL
 DATABASES = {
     'default': config('DATABASE_URL', default=default_dburl, cast=dburl),
 }
@@ -130,7 +129,7 @@ DECIMAL_SEPARATOR = ','
 # https://docs.djangoproject.com/en/{LINK_VERSION}/howto/static-files/
 
 STATIC_URL = '/static/'
-STATIC_ROOT
+# STATIC_ROOT
 
 LOGIN_URL = '/admin/login/'
 LOGIN_REDIRECT_URL = 'core:index'
