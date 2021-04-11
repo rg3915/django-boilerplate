@@ -132,7 +132,7 @@ EOF
 
 # ********** EDITING accounts **********
 echo "${green}>>> Editing accounts/urls.py${reset}"
-cat << EOF > accounts/urls.py
+cat << EOF > $PROJECT/accounts/urls.py
 from django.contrib.auth.views import LoginView, LogoutView
 from django.urls import path
 
@@ -146,7 +146,7 @@ EOF
 
 # ********** EDITING core **********
 echo "${green}>>> Editing core/models.py${reset}"
-cat << EOF > core/models.py
+cat << EOF > $PROJECT/core/models.py
 import uuid
 
 from django.contrib.auth.models import User
@@ -278,7 +278,7 @@ class Active(models.Model):
 EOF
 
 echo "${green}>>> Editing core/urls.py${reset}"
-cat << EOF > core/urls.py
+cat << EOF > $PROJECT/core/urls.py
 from django.urls import path
 
 from $PROJECT.core import views as v
@@ -293,7 +293,7 @@ urlpatterns = [
 EOF
 
 echo "${green}>>> Editing core/views.py${reset}"
-cat << EOF > core/views.py
+cat << EOF > $PROJECT/core/views.py
 from django.contrib.auth.decorators import login_required
 from django.http import HttpResponse
 from django.shortcuts import render
@@ -315,7 +315,7 @@ EOF
 
 # ********** EDITING crm **********
 echo "${green}>>> Editing crm/admin.py${reset}"
-cat << EOF > crm/admin.py
+cat << EOF > $PROJECT/crm/admin.py
 from django.contrib import admin
 
 from .models import Person
@@ -335,7 +335,7 @@ class PersonAdmin(admin.ModelAdmin):
 EOF
 
 echo "${green}>>> Editing crm/forms.py${reset}"
-cat << EOF > crm/forms.py
+cat << EOF > $PROJECT/crm/forms.py
 from django import forms
 
 from .models import Person
@@ -350,7 +350,7 @@ class PersonForm(forms.ModelForm):
 EOF
 
 echo "${green}>>> Editing crm/models.py${reset}"
-cat << EOF > crm/models.py
+cat << EOF > $PROJECT/crm/models.py
 from django.db import models
 from django.urls import reverse_lazy
 
@@ -386,7 +386,7 @@ class Person(UuidModel, TimeStampedModel, Address, Document, Active):
 EOF
 
 echo "${green}>>> Editing crm/urls.py${reset}"
-cat << EOF > crm/urls.py
+cat << EOF > $PROJECT/crm/urls.py
 from django.urls import path
 
 from $PROJECT.crm import views as v
@@ -399,9 +399,6 @@ urlpatterns = [
 ]
 
 EOF
-
-
-
 
 
 # migrate
