@@ -51,6 +51,29 @@ cp /tmp/django-boilerplate/boilerplatesimple.sh .
 printf "Type:\n`tput setaf 2`source boilerplatesimple.sh myproject\n"'
 ```
 
+### Base Models
+
+The app core contains abstract models to use in other models.
+
+
+### management commands
+
+The app core contains a management commands example.
+
+```
+$ python manage.py hello --help
+
+usage: manage.py hello [-h] [--awards] ...
+
+Print hello world.
+
+optional arguments:
+  -h, --help            show this help message and exit
+  --awards, -a          Help of awards options.
+```
+
+
+
 ### Folders
 
 ```

@@ -217,7 +217,7 @@ class Command(BaseCommand):
         parser.add_argument(
             '--awards', '-a',
             action='store_true',
-            help='Ajuda da opção awards.'
+            help='Help of awards options.'
         )
 
     def handle(self, *args, **options):
