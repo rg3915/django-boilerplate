@@ -97,3 +97,31 @@ python ../manage.py startapp crm
 # up one level
 cd ..
 
+# ********** EDITING FILES **********
+echo "${green}>>> Editing settings.py${reset}"
+cp -r /tmp/django-boilerplate-simple/settings.py/ $PROJECT/
+sed -i "s/{PROJECT}/$PROJECT/g" $PROJECT/settings.py
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+read -p "Replace LANGUAGE_CODE to pt-br? [Y/n] " response
+response=${response:-Y}
+if [[ $response == 'Y' || $response == 'y' ]]; then
+    # replace LANGUAGE_CODE to pt-br
+    sed -i "s/en-us/pt-br/g" $PROJECT/settings.py
+    # replace TIME_ZONE to America/Sao_Paulo
+    sed -i "s/UTC/America\/Sao_Paulo/g" $PROJECT/settings.py
+fi
+
