@@ -72,7 +72,7 @@ sleep 2
 # Install Django
 echo "${green}>>> Installing the Django${reset}"
 pip install -U pip
-pip install django==$DJANGO_VERSION dj-database-url django-extensions django-localflavor isort python-decouple
+pip install django==$DJANGO_VERSION dj-database-url django-extensions django-localflavor isort python-decouple ipdb
 echo Django==$DJANGO_VERSION > requirements.txt
 pip freeze | grep dj-database-url >> requirements.txt
 pip freeze | grep django-extensions >> requirements.txt
