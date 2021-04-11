@@ -11,6 +11,7 @@ https://docs.djangoproject.com/en/{LINK_VERSION}/ref/settings/
 """
 
 SETTINGS_IMPORT
+
 from dj_database_url import parse as dburl
 from decouple import Csv, config
 
