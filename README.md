@@ -25,18 +25,28 @@ Packages used in conjunction with Django.
 
 ## Usage
 
+This script run in Unix.
+
 ```
-git clone https://github.com/rg3915/django-boilerplate-simple.git
-# Create new folder to your new project.
-mkdir new_project
-cd new_project
-# Copy
-cp django-boilerplate-simple/boilerplatesimple.sh .
+git clone https://github.com/rg3915/django-boilerplate-simple.git /tmp/django-boilerplate-simple
+# Copy this file to your actual folder.
+cp /tmp/django-boilerplate-simple/boilerplatesimple.sh .
 ```
 
 Type the following command. You can change the project name.
 
 ```
 source boilerplatesimple.sh myproject
+```
+
+
+### Alias
+
+If yout want to use a alias.
+
+```
+alias bsimple='git clone https://github.com/rg3915/django-boilerplate-simple.git /tmp/django-boilerplate-simple;
+cp /tmp/django-boilerplate-simple/boilerplatesimple.sh .
+printf "Type:\n`tput setaf 2`source boilerplatesimple.sh myproject\n"'
 ```
 
