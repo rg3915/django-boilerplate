@@ -11,6 +11,7 @@ https://docs.djangoproject.com/en/3.1/ref/settings/
 """
 
 from pathlib import Path
+
 from decouple import Csv, config
 from dj_database_url import parse as dburl
 
@@ -131,3 +132,5 @@ DECIMAL_SEPARATOR = ','
 STATIC_URL = '/static/'
 
 LOGIN_URL = '/admin/login/'
+LOGIN_REDIRECT_URL = 'core:index'
+# LOGOUT_REDIRECT_URL = 'core:index'

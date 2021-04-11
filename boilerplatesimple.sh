@@ -72,8 +72,13 @@ sleep 2
 # Install Django
 echo "${green}>>> Installing the Django${reset}"
 pip install -U pip
-pip install django==$DJANGO_VERSION dj-database-url django-extensions isort python-decouple
-pip freeze > requirements.txt
+pip install django==$DJANGO_VERSION dj-database-url django-extensions django-localflavor isort python-decouple
+echo Django==$DJANGO_VERSION > requirements.txt
+pip freeze | grep dj-database-url >> requirements.txt
+pip freeze | grep django-extensions >> requirements.txt
+pip freeze | grep django-localflavor >> requirements.txt
+pip freeze | grep isort >> requirements.txt
+pip freeze | grep python-decouple >> requirements.txt
 
 echo "${green}>>> Creating contrib/env_gen.py${reset}"
 cp -r /tmp/django-boilerplate-simple/contrib/ .
@@ -124,3 +129,296 @@ urlpatterns = [
     path('admin/', admin.site.urls),
 ]
 EOF
+
+# ********** EDITING accounts **********
+echo "${green}>>> Editing accounts/urls.py${reset}"
+cat << EOF > accounts/urls.py
+from django.contrib.auth.views import LoginView, LogoutView
+from django.urls import path
+
+urlpatterns = [
+    path('login/', LoginView.as_view(), name='login'),
+    path('logout/', LogoutView.as_view(), name='logout'),
+]
+
+EOF
+
+
+# ********** EDITING core **********
+echo "${green}>>> Editing core/models.py${reset}"
+cat << EOF > core/models.py
+import uuid
+
+from django.contrib.auth.models import User
+from django.db import models
+from localflavor.br.br_states import STATE_CHOICES
+
+
+class UuidModel(models.Model):
+    uuid = models.UUIDField(unique=True, editable=False, default=uuid.uuid4)
+
+    class Meta:
+        abstract = True
+
+
+class TimeStampedModel(models.Model):
+    created = models.DateTimeField(
+        'criado em',
+        auto_now_add=True,
+        auto_now=False
+    )
+    modified = models.DateTimeField(
+        'modificado em',
+        auto_now_add=False,
+        auto_now=True
+    )
+
+    class Meta:
+        abstract = True
+
+
+class CreatedBy(models.Model):
+    created_by = models.ForeignKey(
+        User,
+        verbose_name='criado por',
+        on_delete=models.SET_NULL,
+        null=True,
+        blank=True,
+    )
+
+    class Meta:
+        abstract = True
+
+
+class Address(models.Model):
+    address = models.CharField(
+        'endereço',
+        max_length=100,
+        null=True,
+        blank=True
+    )
+    address_number = models.IntegerField('número', null=True, blank=True)
+    complement = models.CharField(
+        'complemento',
+        max_length=100,
+        null=True,
+        blank=True
+    )
+    district = models.CharField(
+        'bairro',
+        max_length=100,
+        null=True,
+        blank=True
+    )
+    city = models.CharField('cidade', max_length=100, null=True, blank=True)
+    uf = models.CharField(
+        'UF',
+        max_length=2,
+        choices=STATE_CHOICES,
+        null=True,
+        blank=True
+    )
+    cep = models.CharField('CEP', max_length=9, null=True, blank=True)
+    country = models.CharField(
+        'país',
+        max_length=50,
+        default='Brasil',
+        null=True,
+        blank=True
+    )
+
+    class Meta:
+        abstract = True
+
+    def to_dict_base(self):
+        return {
+            'address': self.address,
+            'address_number': self.address_number,
+            'complement': self.complement,
+            'district': self.district,
+            'city': self.city,
+            'uf': self.uf,
+            'cep': self.cep,
+        }
+
+
+class Document(models.Model):
+    cpf = models.CharField(
+        'CPF',
+        max_length=11,
+        unique=True,
+        null=True,
+        blank=True
+    )
+    rg = models.CharField('RG', max_length=11, null=True, blank=True)
+    cnh = models.CharField('CNH', max_length=20, null=True, blank=True)
+
+    class Meta:
+        abstract = True
+
+    def to_dict_base(self):
+        return {
+            'cpf': self.cpf,
+            'rg': self.rg,
+            'cnh': self.cnh,
+        }
+
+
+class Active(models.Model):
+    active = models.BooleanField('ativo', default=True)
+    exist_deleted = models.BooleanField(
+        'existe/deletado',
+        default=True,
+        help_text='Se for True o item existe. Se for False o item foi deletado.'
+    )
+
+    class Meta:
+        abstract = True
+
+EOF
+
+echo "${green}>>> Editing core/urls.py${reset}"
+cat << EOF > core/urls.py
+from django.urls import path
+
+from $PROJECT.core import views as v
+
+app_name = 'core'
+
+
+urlpatterns = [
+    path('', v.index, name='index'),
+]
+
+EOF
+
+echo "${green}>>> Editing core/views.py${reset}"
+cat << EOF > core/views.py
+from django.contrib.auth.decorators import login_required
+from django.http import HttpResponse
+from django.shortcuts import render
+
+
+# @login_required
+def index(request):
+    return HttpResponse('<h1>Django</h1><p>Página simples.</p>')
+
+
+# @login_required
+# def index(request):
+#     template_name = 'index.html'
+#     return render(request, template_name)
+
+EOF
+
+
+
+# ********** EDITING crm **********
+echo "${green}>>> Editing crm/admin.py${reset}"
+cat << EOF > crm/admin.py
+from django.contrib import admin
+
+from .models import Person
+
+
+@admin.register(Person)
+class PersonAdmin(admin.ModelAdmin):
+    list_display = ('__str__', 'email', 'active')
+    # readonly_fields = ('slug',)
+    # list_display_links = ('name',)
+    search_fields = ('first_name', 'last_name', 'email')
+    list_filter = ('active',)
+    # date_hierarchy = 'created'
+    # ordering = ('-created',)
+    # actions = ('',)
+
+EOF
+
+echo "${green}>>> Editing crm/forms.py${reset}"
+cat << EOF > crm/forms.py
+from django import forms
+
+from .models import Person
+
+
+class PersonForm(forms.ModelForm):
+
+    class Meta:
+        model = Person
+        fields = '__all__'
+
+EOF
+
+echo "${green}>>> Editing crm/models.py${reset}"
+cat << EOF > crm/models.py
+from django.db import models
+from django.urls import reverse_lazy
+
+from $PROJECT.core.models import (
+    Active,
+    Address,
+    Document,
+    TimeStampedModel,
+    UuidModel
+)
+
+
+class Person(UuidModel, TimeStampedModel, Address, Document, Active):
+    first_name = models.CharField('nome', max_length=50)
+    last_name = models.CharField('sobrenome', max_length=50, null=True, blank=True)  # noqa E501
+    email = models.EmailField(null=True, blank=True)
+
+    class Meta:
+        ordering = ('first_name',)
+        verbose_name = 'pessoa'
+        verbose_name_plural = 'pessoas'
+
+    @property
+    def full_name(self):
+        return f'{self.first_name} {self.last_name or ""}'.strip()
+
+    def __str__(self):
+        return self.full_name
+
+    # def get_absolute_url(self):
+    #     return reverse_lazy('crm:person_detail', kwargs={'pk': self.pk})
+
+EOF
+
+echo "${green}>>> Editing crm/urls.py${reset}"
+cat << EOF > crm/urls.py
+from django.urls import path
+
+from $PROJECT.crm import views as v
+
+app_name = 'crm'
+
+
+urlpatterns = [
+    # path(),
+]
+
+EOF
+
+
+
+
+
+# migrate
+python manage.py makemigrations
+python manage.py migrate
+
+read -p "Create superuser? [Y/n] " answer
+answer=${answer:-Y}
+if [[ $answer == 'Y' || $answer == 'y' ]]; then
+    echo "${green}>>> Creating a 'admin' user ...${reset}"
+    echo "${green}>>> The password must contain at least 8 characters.${reset}"
+    echo "${green}>>> Password suggestions: demodemo${reset}"
+    python manage.py createsuperuser --username='admin' --email=''
+fi
+
+echo "${red}>>> Important: Dont add .env in your public repository.${reset}"
+echo "${red}>>> KEEP YOUR SECRET_KEY AND PASSWORDS IN SECRET!!!\n${reset}"
+echo "${green}>>> Done${reset}"
+echo "${red}>>> Finally, delete the boilerplatesimple.sh\n${reset}"
+# https://www.gnu.org/software/sed/manual/sed.html

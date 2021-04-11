@@ -19,6 +19,7 @@ Packages used in conjunction with Django.
 * [Django 3.1.8](https://www.djangoproject.com/)
 * [dj-database-url](https://pypi.org/project/dj-database-url/)
 * [django-extensions](https://django-extensions.readthedocs.io/en/latest/installation_instructions.html)
+* [django-localflavor](https://pypi.org/project/django-localflavor/)
 * [isort](https://pypi.org/project/isort/)
 * [python-decouple](https://pypi.org/project/python-decouple/)
 
