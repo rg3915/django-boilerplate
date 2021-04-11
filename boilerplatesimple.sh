@@ -200,6 +200,33 @@ def index(request):
 
 EOF
 
+# Create management commands.
+echo "${green}>>> Editing management/commands.${reset}"
+mkdir -p $PROJECT/core/management/commands
+touch $PROJECT/core/management/commands/__init__.py
+
+cat << EOF > $PROJECT/core/management/commands/hello.py
+from django.core.management.base import BaseCommand
+
+
+class Command(BaseCommand):
+    help = 'Print hello world.'
+
+    def add_arguments(self, parser):
+        # Argumento nomeado
+        parser.add_argument(
+            '--awards', '-a',
+            action='store_true',
+            help='Ajuda da opção awards.'
+        )
+
+    def handle(self, *args, **options):
+        self.stdout.write('Hello world.')
+        if options['awards']:
+            self.stdout.write('Awards')
+
+EOF
+
 
 
 # ********** EDITING crm **********
