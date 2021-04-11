@@ -12,8 +12,8 @@ https://docs.djangoproject.com/en/{LINK_VERSION}/ref/settings/
 
 SETTINGS_IMPORT
 
-from dj_database_url import parse as dburl
 from decouple import Csv, config
+from dj_database_url import parse as dburl
 
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -82,3 +82,56 @@ WSGI_APPLICATION = '{PROJECT}.wsgi.application'
 
 # Database
 # https://docs.djangoproject.com/en/{LINK_VERSION}/ref/settings/#databases
+
+{DEFAULT_DBURL}
+DATABASES = {
+    'default': config('DATABASE_URL', default=default_dburl, cast=dburl),
+}
+
+
+# Password validation
+# https://docs.djangoproject.com/en/{LINK_VERSION}/ref/settings/#auth-password-validators
+
+AUTH_PASSWORD_VALIDATORS = [
+    {
+        'NAME': 'django.contrib.auth.password_validation.UserAttributeSimilarityValidator',
+    },
+    {
+        'NAME': 'django.contrib.auth.password_validation.MinimumLengthValidator',
+    },
+    {
+        'NAME': 'django.contrib.auth.password_validation.CommonPasswordValidator',
+    },
+    {
+        'NAME': 'django.contrib.auth.password_validation.NumericPasswordValidator',
+    },
+]
+
+
+# Internationalization
+# https://docs.djangoproject.com/en/{LINK_VERSION}/topics/i18n/
+
+LANGUAGE_CODE = 'en-us'
+
+TIME_ZONE = 'UTC'
+
+USE_I18N = True
+
+USE_L10N = True
+
+USE_TZ = True
+
+USE_THOUSAND_SEPARATOR = True
+
+DECIMAL_SEPARATOR = ','
+
+
+# Static files (CSS, JavaScript, Images)
+# https://docs.djangoproject.com/en/{LINK_VERSION}/howto/static-files/
+
+STATIC_URL = '/static/'
+STATIC_ROOT
+
+LOGIN_URL = '/admin/login/'
+LOGIN_REDIRECT_URL = 'core:index'
+# LOGOUT_REDIRECT_URL = 'core:index'

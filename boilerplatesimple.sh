@@ -125,12 +125,14 @@ if [[ $response == '2' ]]; then
     sed -i "s/{LINK_VERSION}/2.2/g" $PROJECT/settings.py
     sed -i "s/SETTINGS_IMPORT/import os/g" $PROJECT/settings.py
     sed -i "s/SETTINGS_BASE_DIR/BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))/g" $PROJECT/settings.py
+    sed -i "s/{DEFAULT_DBURL}/default_dburl = 'sqlite:///' + os.path.join(BASE_DIR, 'db.sqlite3')/g" $PROJECT/settings.py
+    sed -i "s/STATIC_ROOT/STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')/g" $PROJECT/settings.py
 else
     sed -i "s/{LINK_VERSION}/3.1/g" $PROJECT/settings.py
     sed -i "s/SETTINGS_IMPORT/from pathlib import Path/g" $PROJECT/settings.py
     sed -i "s/SETTINGS_BASE_DIR/BASE_DIR = Path(__file__).resolve().parent.parent/g" $PROJECT/settings.py
-    # Deleta linha desnecessária.
-    sed '/dj_database_url/d' $PROJECT/settings.py
+    sed -i "s/{DEFAULT_DBURL}/default_dburl = 'sqlite:///' + str(BASE_DIR / 'db.sqlite3')/g" $PROJECT/settings.py
+    sed -i "s/STATIC_ROOT/STATIC_ROOT = BASE_DIR.joinpath('staticfiles')/g" $PROJECT/settings.py
 fi
 
 read -p "Replace LANGUAGE_CODE to pt-br? [Y/n] " response
