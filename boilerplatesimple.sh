@@ -417,5 +417,7 @@ fi
 echo "${red}>>> Important: Dont add .env in your public repository.${reset}"
 echo "${red}>>> KEEP YOUR SECRET_KEY AND PASSWORDS IN SECRET!!!\n${reset}"
 echo "${green}>>> Done${reset}"
-echo "${red}>>> Finally, delete the boilerplatesimple.sh\n${reset}"
 # https://www.gnu.org/software/sed/manual/sed.html
+
+# Move this file to /tmp folder.
+mv boilerplatesimple.sh /tmp
