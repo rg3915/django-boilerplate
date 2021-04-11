@@ -30,7 +30,6 @@ echo "${green}>>> You chose Django $DJANGO_VERSION.${reset}"
 echo "${green}>>> The name of the project is '$PROJECT'.${reset}"
 
 echo "${green}>>> Creating .gitignore${reset}"
-
 cp /tmp/django-boilerplate-simple/.gitignore .
 
 echo "${green}>>> Creating README.md${reset}"
@@ -58,3 +57,26 @@ python contrib/env_gen.py
 python manage.py migrate
 \`\`\`
 EOF
+
+echo "${green}>>> Creating virtualenv${reset}"
+python -m venv .venv
+echo "${green}>>> .venv is created${reset}"
+
+# active
+sleep 2
+echo "${green}>>> activate the .venv${reset}"
+source .venv/bin/activate
+PS1="(`basename \"$VIRTUAL_ENV\"`)\e[1;34m:/\W\e[00m$ "
+sleep 2
+
+# Install Django
+echo "${green}>>> Installing the Django${reset}"
+pip install -U pip
+pip install django==$DJANGO_VERSION dj-database-url django-extensions isort python-decouple
+pip freeze > requirements.txt
+
+echo "${green}>>> Creating contrib/env_gen.py${reset}"
+cp -r /tmp/django-boilerplate-simple/contrib/ .
+
+echo "${green}>>> Running contrib/env_gen.py${reset}"
+python contrib/env_gen.py
