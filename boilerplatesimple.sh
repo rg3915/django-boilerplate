@@ -18,7 +18,7 @@ echo "3 - 3.1.8"
 read -p "Choose from 2, 3 [3]: " response
 response=${response:-3}
 
-PYTHON_VERSION=3.8.7
+PYTHON_VERSION=3.8.9
 DJANGO_VERSION=3.1.8
 
 if [[ $response == '2' ]]; then

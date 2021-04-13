@@ -15,7 +15,7 @@ The project contains:
 
 Packages used in conjunction with Django.
 
-* [Python 3.8.7](https://www.python.org/downloads/)
+* [Python 3.8.9](https://www.python.org/downloads/)
 * [Django 3.1.8](https://www.djangoproject.com/)
 * [dj-database-url](https://pypi.org/project/dj-database-url/)
 * [django-extensions](https://django-extensions.readthedocs.io/en/latest/installation_instructions.html)
