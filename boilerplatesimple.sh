@@ -1,5 +1,7 @@
 # Shell script to create a Django project.
 
+# Update USERNAME to your username.
+
 # Usage:
 # Type the following command, you can change the project name.
 
@@ -20,6 +22,7 @@ response=${response:-3}
 
 PYTHON_VERSION=3.8.9
 DJANGO_VERSION=3.1.8
+USERNAME=${2-rg3915}
 
 if [[ $response == '2' ]]; then
     DJANGO_VERSION=2.2.20
@@ -36,8 +39,8 @@ echo "${green}>>> Creating README.md${reset}"
 cat << EOF > README.md
 ## This project was done with:
 
-* Python $PYTHON_VERSION
-* Django $DJANGO_VERSION
+* [Python $PYTHON_VERSION](https://www.python.org/)
+* [Django $DJANGO_VERSION](https://www.djangoproject.com/)
 
 ## How to run project?
 
@@ -48,7 +51,31 @@ cat << EOF > README.md
 * Run the migrations.
 
 \`\`\`
-git clone https://github.com/rg3915/$PROJECT.git
+git clone https://github.com/$USERNAME/$PROJECT.git
+cd $PROJECT
+python -m venv .venv
+source .venv/bin/activate
+pip install -r requirements.txt
+python contrib/env_gen.py
+python manage.py migrate
+\`\`\`
+
+
+## Este projeto foi feito com:
+
+* [Python $PYTHON_VERSION](https://www.python.org/)
+* [Django $DJANGO_VERSION](https://www.djangoproject.com/)
+
+## Como rodar o projeto?
+
+* Clone esse repositório.
+* Crie um virtualenv com Python 3.
+* Ative o virtualenv.
+* Instale as dependências.
+* Rode as migrações.
+
+\`\`\`
+git clone https://github.com/$USERNAME/$PROJECT.git
 cd $PROJECT
 python -m venv .venv
 source .venv/bin/activate

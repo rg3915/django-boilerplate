@@ -34,10 +34,12 @@ git clone https://github.com/rg3915/django-boilerplate.git /tmp/django-boilerpla
 cp /tmp/django-boilerplate/boilerplatesimple.sh .
 ```
 
+Update USERNAME to your username.
+
 Type the following command. You can change the project name.
 
 ```
-source boilerplatesimple.sh myproject
+source boilerplatesimple.sh myproject username<optional>
 ```
 
 
