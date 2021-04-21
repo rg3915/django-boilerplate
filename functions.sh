@@ -102,9 +102,7 @@ edit_app_core() {
 }
 
 edit_app_crm() {
-    if [[ $response == '3' ]]; then
-        sed -i "s/crm/$PROJECT.crm/g" $PROJECT/crm/apps.py
-    fi
+    sed -i "s/crm/$PROJECT.crm/g" $PROJECT/crm/apps.py
 }
 
 edit_urls() {
