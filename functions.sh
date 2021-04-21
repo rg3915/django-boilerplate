@@ -78,6 +78,17 @@ edit_settings() {
     fi
 }
 
+replace_language_code() {
+    read -p "Replace LANGUAGE_CODE to pt-br? [Y/n] " response_language_code
+    response_language_code=${response_language_code:-Y}
+    if [[ $response_language_code == 'Y' || $response_language_code == 'y' ]]; then
+        # replace LANGUAGE_CODE to pt-br
+        sed -i "s/en-us/pt-br/g" $PROJECT/settings.py
+        # replace TIME_ZONE to America/Sao_Paulo
+        sed -i "s/UTC/America\/Sao_Paulo/g" $PROJECT/settings.py
+    fi
+}
+
 edit_urls() {
     echo "${green}>>> Editing urls.py${reset}"
     cp /tmp/django-boilerplate/urls.py $PROJECT/
@@ -131,4 +142,35 @@ edit_crm_urls() {
 edit_crm_views() {
     echo "${green}>>> Editing crm/views.py${reset}"
     cp /tmp/django-boilerplate/crm/views.py $PROJECT/crm
+}
+
+create_app_crm() {
+    read -p "Create the app 'crm'? [y/N] " response_crm
+    response_crm=${response_crm:-N}
+    if [[ $response_crm == 'Y' || $response_crm == 'y' ]]; then
+        echo "${green}>>> Creating the app 'crm' ...${reset}"
+        cd $PROJECT
+        python ../manage.py startapp crm
+        cd ..
+
+        # Remove comment.
+        sed -i "s/# '$PROJECT.crm'/'$PROJECT.crm'/g" $PROJECT/settings.py
+
+        edit_crm_admin
+        edit_crm_forms
+        edit_crm_models
+        edit_crm_urls
+        edit_crm_views
+    fi
+}
+
+create_superuser() {
+    read -p "Create superuser? [Y/n] " answer
+    answer=${answer:-Y}
+    if [[ $answer == 'Y' || $answer == 'y' ]]; then
+        echo "${green}>>> Creating a 'admin' user ...${reset}"
+        echo "${green}>>> The password must contain at least 8 characters.${reset}"
+        echo "${green}>>> Password suggestions: demodemo${reset}"
+        python manage.py createsuperuser --username='admin' --email=''
+    fi
 }
