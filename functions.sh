@@ -92,9 +92,9 @@ replace_language_code() {
 
 edit_apps() {
     if [[ $response == '3' ]]; then
-        sed -i "s/.accounts/$PROJECT.accounts/g" $PROJECT/accounts/apps.py
-        sed -i "s/.core/$PROJECT.core/g" $PROJECT/core/apps.py
-        sed -i "s/.crm/$PROJECT.crm/g" $PROJECT/crm/apps.py
+        sed -i "s/accounts/$PROJECT.accounts/g" $PROJECT/accounts/apps.py
+        sed -i "s/core/$PROJECT.core/g" $PROJECT/core/apps.py
+        sed -i "s/crm/$PROJECT.crm/g" $PROJECT/crm/apps.py
     fi
 }
 
