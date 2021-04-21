@@ -45,7 +45,7 @@ create_env_gen() {
 create_project() {
     # Create project
     echo "${green}>>> Creating the project '$PROJECT' ...${reset}"
-    django-admin.py startproject $PROJECT .
+    django-admin startproject $PROJECT .
     cd $PROJECT
     echo "${green}>>> Creating the app 'core' ...${reset}"
     python ../manage.py startapp core

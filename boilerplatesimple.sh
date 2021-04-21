@@ -50,8 +50,6 @@ edit_settings
 
 replace_language_code
 
-edit_apps
-
 edit_urls
 edit_accounts_urls
 edit_core_urls
@@ -63,6 +61,8 @@ cp /tmp/django-boilerplate/core/models.py $PROJECT/core
 
 # Confirm if create app crm.
 create_app_crm
+
+edit_apps
 
 # migrate
 python manage.py makemigrations
