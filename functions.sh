@@ -80,15 +80,6 @@ edit_settings() {
     fi
 }
 
-replace_language_code() {
-    if [[ $response_language_code == 'Y' || $response_language_code == 'y' ]]; then
-        # replace LANGUAGE_CODE to pt-br
-        sed -i "s/en-us/pt-br/g" $PROJECT/settings.py
-        # replace TIME_ZONE to America/Sao_Paulo
-        sed -i "s/UTC/America\/Sao_Paulo/g" $PROJECT/settings.py
-    fi
-}
-
 edit_app_accounts() {
     if [[ $response == '3' ]]; then
         sed -i "s/accounts/$PROJECT.accounts/g" $PROJECT/accounts/apps.py

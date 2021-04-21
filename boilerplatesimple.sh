@@ -5,7 +5,11 @@
 # Usage:
 # Type the following command, you can change the project name.
 
-# source boilerplatesimple.sh myproject
+# source boilerplatesimple.sh PROJECT CRM DJANGO_VERSION
+
+# source boilerplatesimple.sh myproject crm # <-- default Django 3
+# source boilerplatesimple.sh myproject crm 2
+# source boilerplatesimple.sh myproject 2
 
 # Colors
 red=`tput setaf 1`
@@ -22,8 +26,7 @@ echo "3 - 3.2"
 read -p "Choose from 2, 3 [3]: " response
 response=${response:-3}
 
-read -p "Replace LANGUAGE_CODE to pt-br? [Y/n] " response_language_code
-response_language_code=${response_language_code:-Y}
+echo "LANGUAGE_CODE is pt-br."
 
 read -p "Create the app 'crm'? [y/N] " response_crm
 response_crm=${response_crm:-N}
@@ -53,9 +56,6 @@ create_project
 cd ..
 
 edit_settings
-
-replace_language_code
-
 edit_urls
 edit_accounts_urls
 edit_core_urls
