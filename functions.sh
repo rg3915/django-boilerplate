@@ -25,11 +25,12 @@ install_django() {
     # Install Django
     echo "${green}>>> Installing the Django${reset}"
     pip install -U pip
-    pip install django==$DJANGO_VERSION dj-database-url django-extensions django-localflavor isort python-decouple ipdb
+    pip install django==$DJANGO_VERSION dj-database-url django-extensions django-localflavor isort python-decouple faker ipdb
     echo Django==$DJANGO_VERSION > requirements.txt
     pip freeze | grep dj-database-url >> requirements.txt
     pip freeze | grep django-extensions >> requirements.txt
     pip freeze | grep django-localflavor >> requirements.txt
+    pip freeze | grep Faker >> requirements.txt
     pip freeze | grep isort >> requirements.txt
     pip freeze | grep python-decouple >> requirements.txt
 }
@@ -126,6 +127,13 @@ edit_core_urls() {
 edit_core_views() {
     echo "${green}>>> Editing core/views.py${reset}"
     cp /tmp/django-boilerplate/core/views.py $PROJECT/core
+}
+
+create_utils() {
+    echo "${green}>>> Editing utils.${reset}"
+    mkdir -p $PROJECT/utils
+    cp /tmp/django-boilerplate/utils/* $PROJECT/utils
+    sed -i "s/{PROJECT}/$PROJECT/g" $PROJECT/core/management/commands/create_data.py
 }
 
 create_management_commands() {

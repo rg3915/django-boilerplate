@@ -16,4 +16,3 @@ class Command(BaseCommand):
         self.stdout.write('Hello world.')
         if options['awards']:
             self.stdout.write('Awards')
-

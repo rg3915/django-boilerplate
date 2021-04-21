@@ -87,6 +87,13 @@ optional arguments:
   --awards, -a          Help of awards options.
 ```
 
+```
+$ python manage.py create_data --help
+
+usage: manage.py create_data [-h] ...
+
+Create data.
+```
 
 
 ### Folders
@@ -128,3 +135,11 @@ optional arguments:
 ├── README.md
 └── requirements.txt
 ```
+
+## Read
+
+https://github.com/rg3915/django-auth-tutorial
+
+https://github.com/rg3915/django-custom-login-email
+
+https://github.com/rg3915/coreui-django-boilerplate-v2
