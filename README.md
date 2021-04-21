@@ -39,11 +39,7 @@ Update USERNAME to your username.
 Type the following command. You can change the project name.
 
 ```
-source boilerplatesimple.sh
-# or
-# source boilerplatesimple.sh myproject
-# or
-# source boilerplatesimple.sh myproject crm
+source boilerplatesimple.sh myproject
 ```
 
 
