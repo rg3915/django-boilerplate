@@ -26,7 +26,7 @@ Packages used in conjunction with Django.
 
 ## Usage
 
-This script run in Unix.
+This script run in **Unix**.
 
 ```
 git clone https://github.com/rg3915/django-boilerplate.git /tmp/django-boilerplate

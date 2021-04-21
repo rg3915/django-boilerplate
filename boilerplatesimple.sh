@@ -102,9 +102,9 @@ create_project() {
 
 create_project
 
-read -p "Create the app 'crm'? [y/N] " response
-response=${response:-N}
-if [[ $response == 'Y' || $response == 'y' ]]; then
+read -p "Create the app 'crm'? [y/N] " response_crm
+response_crm=${response_crm:-N}
+if [[ $response_crm == 'Y' || $response_crm == 'y' ]]; then
     echo "${green}>>> Creating the app 'crm' ...${reset}"
     python ../manage.py startapp crm
 fi
@@ -113,219 +113,133 @@ fi
 cd ..
 
 # ********** EDITING FILES **********
-echo "${green}>>> Editing settings.py${reset}"
-cp /tmp/django-boilerplate/settings.py $PROJECT/
+edit_settings() {
+    echo "${green}>>> Editing settings.py${reset}"
+    cp /tmp/django-boilerplate/settings.py $PROJECT/
 
-# Substitui o nome do projeto.
-sed -i "s/{PROJECT}/$PROJECT/g" $PROJECT/settings.py
-sed -i "s/{DJANGO_VERSION}/$DJANGO_VERSION/g" $PROJECT/settings.py
+    # Substitui o nome do projeto.
+    sed -i "s/{PROJECT}/$PROJECT/g" $PROJECT/settings.py
+    sed -i "s/{DJANGO_VERSION}/$DJANGO_VERSION/g" $PROJECT/settings.py
 
-# Troca import, BASE_DIR
-if [[ $response == '2' ]]; then
-    sed -i "s/{LINK_VERSION}/2.2/g" $PROJECT/settings.py
-    sed -i "s/# SETTINGS_IMPORT/import os/g" $PROJECT/settings.py
-    sed -i "s/# SETTINGS_BASE_DIR/BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))/g" $PROJECT/settings.py
-    sed -i "s/# DEFAULT_DBURL/default_dburl = 'sqlite:\/\/\/' + os.path.join(BASE_DIR, 'db.sqlite3')/g" $PROJECT/settings.py
-    sed -i "s/# STATIC_ROOT/STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')/g" $PROJECT/settings.py
-else
-    sed -i "s/{LINK_VERSION}/3.1/g" $PROJECT/settings.py
-    sed -i "s/# SETTINGS_IMPORT/from pathlib import Path/g" $PROJECT/settings.py
-    sed -i "s/# SETTINGS_BASE_DIR/BASE_DIR = Path(__file__).resolve().parent.parent/g" $PROJECT/settings.py
-    sed -i "s/# DEFAULT_DBURL/default_dburl = 'sqlite:\/\/\/' + str(BASE_DIR \/ 'db.sqlite3')/g" $PROJECT/settings.py
-    sed -i "s/# STATIC_ROOT/STATIC_ROOT = BASE_DIR.joinpath('staticfiles')/g" $PROJECT/settings.py
-fi
+    # Troca import, BASE_DIR
+    if [[ $response == '2' ]]; then
+        sed -i "s/{LINK_VERSION}/2.2/g" $PROJECT/settings.py
+        sed -i "s/# SETTINGS_IMPORT/import os/g" $PROJECT/settings.py
+        sed -i "s/# SETTINGS_BASE_DIR/BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))/g" $PROJECT/settings.py
+        sed -i "s/# DEFAULT_DBURL/default_dburl = 'sqlite:\/\/\/' + os.path.join(BASE_DIR, 'db.sqlite3')/g" $PROJECT/settings.py
+        sed -i "s/# STATIC_ROOT/STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')/g" $PROJECT/settings.py
+    else
+        sed -i "s/{LINK_VERSION}/3.1/g" $PROJECT/settings.py
+        sed -i "s/# SETTINGS_IMPORT/from pathlib import Path/g" $PROJECT/settings.py
+        sed -i "s/# SETTINGS_BASE_DIR/BASE_DIR = Path(__file__).resolve().parent.parent/g" $PROJECT/settings.py
+        sed -i "s/# DEFAULT_DBURL/default_dburl = 'sqlite:\/\/\/' + str(BASE_DIR \/ 'db.sqlite3')/g" $PROJECT/settings.py
+        sed -i "s/# STATIC_ROOT/STATIC_ROOT = BASE_DIR.joinpath('staticfiles')/g" $PROJECT/settings.py
+    fi
+}
 
-read -p "Replace LANGUAGE_CODE to pt-br? [Y/n] " response
-response=${response:-Y}
-if [[ $response == 'Y' || $response == 'y' ]]; then
+edit_settings
+
+read -p "Replace LANGUAGE_CODE to pt-br? [Y/n] " response_language_code
+response_language_code=${response_language_code:-Y}
+if [[ $response_language_code == 'Y' || $response_language_code == 'y' ]]; then
     # replace LANGUAGE_CODE to pt-br
     sed -i "s/en-us/pt-br/g" $PROJECT/settings.py
     # replace TIME_ZONE to America/Sao_Paulo
     sed -i "s/UTC/America\/Sao_Paulo/g" $PROJECT/settings.py
 fi
 
-echo "${green}>>> Editing urls.py${reset}"
-cat << EOF > $PROJECT/urls.py
-from django.urls import include, path
-from django.contrib import admin
+edit_urls() {
+    echo "${green}>>> Editing urls.py${reset}"
+    cp /tmp/django-boilerplate/urls.py $PROJECT/
+    sed -i "s/{PROJECT}/$PROJECT/g" $PROJECT/urls.py
+}
 
+edit_urls
 
-urlpatterns = [
-    path('', include('$PROJECT.core.urls', namespace='core')),
-    path('accounts/', include('$PROJECT.accounts.urls')),  # without namespace
-    path('crm/', include('$PROJECT.crm.urls', namespace='crm')),
-    path('admin/', admin.site.urls),
-]
+# aqui
 
-EOF
 
 # ********** EDITING accounts **********
-echo "${green}>>> Editing accounts/urls.py${reset}"
-cat << EOF > $PROJECT/accounts/urls.py
-from django.contrib.auth.views import LoginView, LogoutView
-from django.urls import path
+edit_accounts_urls() {
+    echo "${green}>>> Editing accounts/urls.py${reset}"
+    cp /tmp/django-boilerplate/accounts/urls.py $PROJECT/accounts
+}
 
-urlpatterns = [
-    path('login/', LoginView.as_view(), name='login'),
-    path('logout/', LogoutView.as_view(), name='logout'),
-]
-
-EOF
+edit_accounts_urls
 
 
 # ********** EDITING core **********
 echo "${green}>>> Editing core/models.py${reset}"
-cp /tmp/django-boilerplate/models.py $PROJECT/core/models.py
-
-echo "${green}>>> Editing core/urls.py${reset}"
-cat << EOF > $PROJECT/core/urls.py
-from django.urls import path
-
-from $PROJECT.core import views as v
-
-app_name = 'core'
+cp /tmp/django-boilerplate/core/models.py $PROJECT/core
 
 
-urlpatterns = [
-    path('', v.index, name='index'),
-]
+# ********** EDITING core urls.py **********
+edit_core_urls() {
+    echo "${green}>>> Editing core/urls.py${reset}"
+    cp /tmp/django-boilerplate/core/urls.py $PROJECT/core
+    sed -i "s/{PROJECT}/$PROJECT/g" $PROJECT/core/urls.py
+}
 
-EOF
-
-echo "${green}>>> Editing core/views.py${reset}"
-cat << EOF > $PROJECT/core/views.py
-from django.contrib.auth.decorators import login_required
-from django.http import HttpResponse
-from django.shortcuts import render
+edit_core_urls
 
 
-# @login_required
-def index(request):
-    return HttpResponse('<h1>Django</h1><p>Página simples.</p>')
+edit_core_views() {
+    echo "${green}>>> Editing core/views.py${reset}"
+    cp /tmp/django-boilerplate/core/views.py $PROJECT/core
+}
+
+edit_core_views
 
 
-# @login_required
-# def index(request):
-#     template_name = 'index.html'
-#     return render(request, template_name)
+create_management_commands() {
+    echo "${green}>>> Editing management/commands.${reset}"
+    mkdir -p $PROJECT/core/management/commands
+    cp /tmp/django-boilerplate/core/management/commands/* $PROJECT/core/management/commands
+}
 
-EOF
-
-# Create management commands.
-echo "${green}>>> Editing management/commands.${reset}"
-mkdir -p $PROJECT/core/management/commands
-touch $PROJECT/core/management/commands/__init__.py
-
-cat << EOF > $PROJECT/core/management/commands/hello.py
-from django.core.management.base import BaseCommand
+create_management_commands
 
 
-class Command(BaseCommand):
-    help = 'Print hello world.'
+edit_crm_admin() {
+    echo "${green}>>> Editing crm/admin.py${reset}"
+    cp /tmp/django-boilerplate/crm/admin.py $PROJECT/crm
+}
 
-    def add_arguments(self, parser):
-        # Argumento nomeado
-        parser.add_argument(
-            '--awards', '-a',
-            action='store_true',
-            help='Help of awards options.'
-        )
-
-    def handle(self, *args, **options):
-        self.stdout.write('Hello world.')
-        if options['awards']:
-            self.stdout.write('Awards')
-
-EOF
+edit_crm_admin
 
 
+edit_crm_forms() {
+    echo "${green}>>> Editing crm/forms.py${reset}"
+    cp /tmp/django-boilerplate/crm/forms.py $PROJECT/crm
+}
 
-# ********** EDITING crm **********
-echo "${green}>>> Editing crm/admin.py${reset}"
-cat << EOF > $PROJECT/crm/admin.py
-from django.contrib import admin
-
-from .models import Person
-
-
-@admin.register(Person)
-class PersonAdmin(admin.ModelAdmin):
-    list_display = ('__str__', 'email', 'active')
-    # readonly_fields = ('slug',)
-    # list_display_links = ('name',)
-    search_fields = ('first_name', 'last_name', 'email')
-    list_filter = ('active',)
-    # date_hierarchy = 'created'
-    # ordering = ('-created',)
-    # actions = ('',)
-
-EOF
-
-echo "${green}>>> Editing crm/forms.py${reset}"
-cat << EOF > $PROJECT/crm/forms.py
-from django import forms
-
-from .models import Person
+edit_crm_forms
 
 
-class PersonForm(forms.ModelForm):
+edit_crm_models() {
+    echo "${green}>>> Editing crm/models.py${reset}"
+    cp /tmp/django-boilerplate/crm/models.py $PROJECT/crm
+    sed -i "s/{PROJECT}/$PROJECT/g" $PROJECT/crm/models.py
+}
 
-    class Meta:
-        model = Person
-        fields = '__all__'
-
-EOF
-
-echo "${green}>>> Editing crm/models.py${reset}"
-cat << EOF > $PROJECT/crm/models.py
-from django.db import models
-from django.urls import reverse_lazy
-
-from $PROJECT.core.models import (
-    Active,
-    Address,
-    Document,
-    TimeStampedModel,
-    UuidModel
-)
+edit_crm_models
 
 
-class Person(UuidModel, TimeStampedModel, Address, Document, Active):
-    first_name = models.CharField('nome', max_length=50)
-    last_name = models.CharField('sobrenome', max_length=50, null=True, blank=True)  # noqa E501
-    email = models.EmailField(null=True, blank=True)
+edit_crm_urls() {
+    echo "${green}>>> Editing crm/urls.py${reset}"
+    cp /tmp/django-boilerplate/crm/urls.py $PROJECT/crm
+    sed -i "s/{PROJECT}/$PROJECT/g" $PROJECT/crm/urls.py
+}
 
-    class Meta:
-        ordering = ('first_name',)
-        verbose_name = 'pessoa'
-        verbose_name_plural = 'pessoas'
-
-    @property
-    def full_name(self):
-        return f'{self.first_name} {self.last_name or ""}'.strip()
-
-    def __str__(self):
-        return self.full_name
-
-    # def get_absolute_url(self):
-    #     return reverse_lazy('crm:person_detail', kwargs={'pk': self.pk})
-
-EOF
-
-echo "${green}>>> Editing crm/urls.py${reset}"
-cat << EOF > $PROJECT/crm/urls.py
-from django.urls import path
-
-from $PROJECT.crm import views as v
-
-app_name = 'crm'
+edit_crm_urls
 
 
-urlpatterns = [
-    # path(),
-]
+edit_crm_views() {
+    echo "${green}>>> Editing crm/views.py${reset}"
+    cp /tmp/django-boilerplate/crm/views.py $PROJECT/crm
+}
 
-EOF
+edit_crm_urls
 
 
 # migrate
