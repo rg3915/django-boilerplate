@@ -80,8 +80,6 @@ edit_settings() {
 }
 
 replace_language_code() {
-    read -p "Replace LANGUAGE_CODE to pt-br? [Y/n] " response_language_code
-    response_language_code=${response_language_code:-Y}
     if [[ $response_language_code == 'Y' || $response_language_code == 'y' ]]; then
         # replace LANGUAGE_CODE to pt-br
         sed -i "s/en-us/pt-br/g" $PROJECT/settings.py
@@ -164,8 +162,6 @@ edit_crm_views() {
 }
 
 create_app_crm() {
-    read -p "Create the app 'crm'? [y/N] " response_crm
-    response_crm=${response_crm:-N}
     if [[ $response_crm == 'Y' || $response_crm == 'y' ]]; then
         echo "${green}>>> Creating the app 'crm' ...${reset}"
         cd $PROJECT

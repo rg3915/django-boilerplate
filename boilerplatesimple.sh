@@ -22,6 +22,12 @@ echo "3 - 3.2"
 read -p "Choose from 2, 3 [3]: " response
 response=${response:-3}
 
+read -p "Replace LANGUAGE_CODE to pt-br? [Y/n] " response_language_code
+response_language_code=${response_language_code:-Y}
+
+read -p "Create the app 'crm'? [y/N] " response_crm
+response_crm=${response_crm:-N}
+
 PYTHON_VERSION=3.8.9
 DJANGO_VERSION=3.2
 USERNAME=${2-rg3915}
