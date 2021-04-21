@@ -53,6 +53,8 @@ create_project() {
 
     echo "${green}>>> Creating the app 'accounts' ...${reset}"
     python ../manage.py startapp accounts
+    # up one level
+    cd ..
 }
 
 edit_settings() {
@@ -64,7 +66,7 @@ edit_settings() {
     sed -i "s/{DJANGO_VERSION}/$DJANGO_VERSION/g" $PROJECT/settings.py
 
     # Troca import, BASE_DIR
-    if [[ $response == '2' ]]; then
+    if [[ $DJANGO == '2' ]]; then
         sed -i "s/{LINK_VERSION}/2.2/g" $PROJECT/settings.py
         sed -i "s/# SETTINGS_IMPORT/import os/g" $PROJECT/settings.py
         sed -i "s/{SETTINGS_BASE_DIR}/BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))/g" $PROJECT/settings.py
@@ -81,19 +83,19 @@ edit_settings() {
 }
 
 edit_app_accounts() {
-    if [[ $response == '3' ]]; then
+    if [[ $DJANGO == '3' ]]; then
         sed -i "s/accounts/$PROJECT.accounts/g" $PROJECT/accounts/apps.py
     fi
 }
 
 edit_app_core() {
-    if [[ $response == '3' ]]; then
+    if [[ $DJANGO == '3' ]]; then
         sed -i "s/core/$PROJECT.core/g" $PROJECT/core/apps.py
     fi
 }
 
 edit_app_crm() {
-    if [[ $response == '3' ]]; then
+    if [[ $DJANGO == '3' ]]; then
         sed -i "s/crm/$PROJECT.crm/g" $PROJECT/crm/apps.py
     fi
 }
@@ -161,7 +163,7 @@ edit_crm_views() {
 }
 
 create_app_crm() {
-    if [[ $response_crm == 'Y' || $response_crm == 'y' ]]; then
+    if [[ $APP_CRM == 'crm' ]]; then
         echo "${green}>>> Creating the app 'crm' ...${reset}"
         cd $PROJECT
         python ../manage.py startapp crm
