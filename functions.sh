@@ -155,6 +155,7 @@ create_app_crm() {
 
         # Remove comment.
         sed -i "s/# '$PROJECT.crm'/'$PROJECT.crm'/g" $PROJECT/settings.py
+        sed -i "s/# path('crm/'/path('crm/'/g" $PROJECT/settings.py
 
         edit_crm_admin
         edit_crm_forms
