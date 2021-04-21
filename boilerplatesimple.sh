@@ -18,12 +18,12 @@ PROJECT=${1-myproject}
 
 echo "Select Django version:"
 echo "2 - 2.2.20"
-echo "3 - 3.1.8"
+echo "3 - 3.2"
 read -p "Choose from 2, 3 [3]: " response
 response=${response:-3}
 
 PYTHON_VERSION=3.8.9
-DJANGO_VERSION=3.1.8
+DJANGO_VERSION=3.2
 USERNAME=${2-rg3915}
 
 if [[ $response == '2' ]]; then
