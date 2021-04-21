@@ -163,22 +163,20 @@ edit_crm_views() {
 }
 
 create_app_crm() {
-    if [[ $APP_CRM == 'crm' ]]; then
-        echo "${green}>>> Creating the app 'crm' ...${reset}"
-        cd $PROJECT
-        python ../manage.py startapp crm
-        cd ..
+    echo "${green}>>> Creating the app 'crm' ...${reset}"
+    cd $PROJECT
+    python ../manage.py startapp crm
+    cd ..
 
-        # Remove comment.
-        sed -i "s/# '$PROJECT.crm'/'$PROJECT.crm'/g" $PROJECT/settings.py
-        sed -i "s/# path('crm/path('crm/g" $PROJECT/urls.py
+    # Remove comment.
+    sed -i "s/# '$PROJECT.crm'/'$PROJECT.crm'/g" $PROJECT/settings.py
+    sed -i "s/# path('crm/path('crm/g" $PROJECT/urls.py
 
-        edit_crm_admin
-        edit_crm_forms
-        edit_crm_models
-        edit_crm_urls
-        edit_crm_views
-    fi
+    edit_crm_admin
+    edit_crm_forms
+    edit_crm_models
+    edit_crm_urls
+    edit_crm_views
 }
 
 create_superuser() {

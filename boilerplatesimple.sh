@@ -5,9 +5,7 @@
 # Usage:
 # Type the following command, you can change the project name.
 
-# source boilerplatesimple.sh
 # source boilerplatesimple.sh myproject
-# source boilerplatesimple.sh myproject crm
 
 # Colors
 red=`tput setaf 1`
@@ -18,16 +16,11 @@ source /tmp/django-boilerplate/functions.sh
 
 PROJECT=${1:-myproject}
 
-APP_CRM=${2}
-
 echo "Select Django version:"
 echo "2 - 2.2.20"
 echo "3 - 3.2"
 read -p "Choose from 2, 3 [3]: " DJANGO
 DJANGO=${DJANGO:-3}
-
-# read -p "Create the app 'crm'? [y/N] " APP_CRM
-# APP_CRM=${APP_CRM:-N}
 
 PYTHON_VERSION=3.8.9
 DJANGO_VERSION=3.2
@@ -43,13 +36,7 @@ echo "${green}>>> The name of the project is '$PROJECT'.${reset}"
 
 echo "${green}>>> LANGUAGE_CODE is pt-br.${reset}"
 
-if [ ! -z "$APP_CRM" ]; then
-    if [ $APP_CRM == 'crm' ]; then
-        echo "${green}>>> Create the app 'crm'.${reset}"
-    fi
-fi
-
-sleep 1
+echo "${green}>>> Create the app 'crm'.${reset}"
 
 echo "${green}>>> Creating .gitignore${reset}"
 cp /tmp/django-boilerplate/.gitignore .
@@ -74,18 +61,12 @@ cp /tmp/django-boilerplate/core/models.py $PROJECT/core
 edit_app_accounts
 edit_app_core
 
-
-if [ ! -z "$APP_CRM" ]; then
-    # Confirm if create app crm.
-    create_app_crm
-    if [ $APP_CRM == 'crm' ]; then
-        edit_app_crm
-    fi
-fi
-
 # migrate
 python manage.py makemigrations
 python manage.py migrate
+
+create_app_crm
+edit_app_crm
 
 # Confirm if create superuser.
 create_superuser
