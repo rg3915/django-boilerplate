@@ -95,7 +95,7 @@ edit_apps() {
         sed -i "s/.accounts/$PROJECT.accounts/g" $PROJECT/accounts/apps.py
         sed -i "s/.core/$PROJECT.core/g" $PROJECT/core/apps.py
         sed -i "s/.crm/$PROJECT.crm/g" $PROJECT/crm/apps.py
-    then
+    fi
 }
 
 edit_urls() {
