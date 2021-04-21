@@ -90,6 +90,14 @@ replace_language_code() {
     fi
 }
 
+edit_apps() {
+    if [[ $response == '3' ]]; then
+        sed -i "s/.accounts/$PROJECT.accounts/g" $PROJECT/accounts/apps.py
+        sed -i "s/.core/$PROJECT.core/g" $PROJECT/core/apps.py
+        sed -i "s/.crm/$PROJECT.crm/g" $PROJECT/crm/apps.py
+    then
+}
+
 edit_urls() {
     echo "${green}>>> Editing urls.py${reset}"
     cp /tmp/django-boilerplate/urls.py $PROJECT/

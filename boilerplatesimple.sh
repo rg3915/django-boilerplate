@@ -50,6 +50,8 @@ edit_settings
 
 replace_language_code
 
+edit_apps
+
 edit_urls
 edit_accounts_urls
 edit_core_urls

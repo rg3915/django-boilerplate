@@ -53,6 +53,15 @@ cp /tmp/django-boilerplate/boilerplatesimple.sh .
 printf "Type:\n`tput setaf 2`source boilerplatesimple.sh myproject\n"'
 ```
 
+### New app
+
+If create new app edit `apps.py`.
+
+```python
+# apps.py
+name = 'PROJECT.<app name>'
+```
+
 ### Base Models
 
 The app core contains abstract models to use in other models.
