@@ -65,7 +65,9 @@ edit_app_core
 # Confirm if create app crm.
 create_app_crm
 
-edit_app_crm
+if [[ $response == '3' ]]; then
+    edit_app_crm
+fi
 
 # migrate
 python manage.py makemigrations

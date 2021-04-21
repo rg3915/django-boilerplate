@@ -60,6 +60,10 @@ If create new app edit `apps.py`.
 ```python
 # apps.py
 name = 'PROJECT.<app name>'
+# example
+name = 'myproject.accounts'
+name = 'myproject.core'
+name = 'myproject.crm'
 ```
 
 ### Base Models
