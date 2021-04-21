@@ -72,7 +72,7 @@ edit_app_core
 # Confirm if create app crm.
 create_app_crm
 
-if [[ $response == '3' ]]; then
+if [[ $response_crm == 'Y' || $response_crm == 'y' ]]; then
     edit_app_crm
 fi
 
