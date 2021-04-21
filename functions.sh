@@ -90,10 +90,20 @@ replace_language_code() {
     fi
 }
 
-edit_apps() {
+edit_app_accounts() {
     if [[ $response == '3' ]]; then
         sed -i "s/accounts/$PROJECT.accounts/g" $PROJECT/accounts/apps.py
+    fi
+}
+
+edit_app_core() {
+    if [[ $response == '3' ]]; then
         sed -i "s/core/$PROJECT.core/g" $PROJECT/core/apps.py
+    fi
+}
+
+edit_app_crm() {
+    if [[ $response == '3' ]]; then
         sed -i "s/crm/$PROJECT.crm/g" $PROJECT/crm/apps.py
     fi
 }

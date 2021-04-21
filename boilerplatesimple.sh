@@ -59,10 +59,13 @@ create_management_commands
 echo "${green}>>> Editing core/models.py${reset}"
 cp /tmp/django-boilerplate/core/models.py $PROJECT/core
 
+edit_app_accounts
+edit_app_core
+
 # Confirm if create app crm.
 create_app_crm
 
-edit_apps
+edit_app_crm
 
 # migrate
 python manage.py makemigrations
