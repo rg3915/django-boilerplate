@@ -57,6 +57,18 @@ cp /tmp/django-boilerplate/boilerplatesimple.sh .
 printf "Type:\n`tput setaf 2`source boilerplatesimple.sh myproject\n"'
 ```
 
+### App CRM
+
+CRM is initially without migrations. Giving you the freedom to delete the app.
+However, if you want to use it, enter the following commands:
+
+```
+python manage.py makemigrations
+python manage.py migrate
+python manage.py create_data
+python manage.py runserver
+```
+
 ### New app
 
 If create new app edit `*/apps.py`.
