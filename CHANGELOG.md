@@ -1,10 +1,10 @@
 # Changelog
 
-## [2.1.1] - 2021-04-13
+## [1.1.4] - 2021-04-25
 
 ### Changed
 
-...
+* CRM: Add templates
 
 ## Old version
 

@@ -7,9 +7,13 @@ This boilerplate creates a simple Django project with a core app and some pre-de
 The project contains:
 
 * Settings config
-* App accounts
-* App core
-* App crm
+* App Accounts
+    * login and logout
+* App CORE
+    * Abstract models
+* App CRM
+    * CRUD
+    * Templates
 
 ## Packages
 

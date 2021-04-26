@@ -129,6 +129,12 @@ create_utils() {
     sed -i "s/{PROJECT}/$PROJECT/g" $PROJECT/core/management/commands/create_data.py
 }
 
+create_core_templates() {
+    echo "${green}>>> Coping core templates.${reset}"
+    mkdir -p $PROJECT/core/templates/includes
+    cp -R /tmp/django-boilerplate/core/templates/* $PROJECT/core/templates
+}
+
 create_management_commands() {
     echo "${green}>>> Editing management/commands.${reset}"
     mkdir -p $PROJECT/core/management/commands
