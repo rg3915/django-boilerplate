@@ -135,6 +135,12 @@ create_core_templates() {
     cp -R /tmp/django-boilerplate/core/templates/* $PROJECT/core/templates
 }
 
+create_static() {
+    echo "${green}>>> Coping static.${reset}"
+    mkdir -p $PROJECT/core/static/css
+    cp -R /tmp/django-boilerplate/core/static/css/* $PROJECT/core/static/css
+}
+
 create_crm_templates() {
     echo "${green}>>> Coping crm templates.${reset}"
     mkdir -p $PROJECT/crm/templates/crm

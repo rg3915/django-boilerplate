@@ -1,0 +1,12 @@
+body {
+  margin-top: 60px;
+}
+
+label.required:after {
+  content: ' *';
+  color: red;
+}
+
+.no {
+  color: red;
+}

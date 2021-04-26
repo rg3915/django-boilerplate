@@ -55,6 +55,7 @@ edit_core_views
 create_management_commands
 create_utils
 create_core_templates
+create_static
 
 echo "${green}>>> Editing core/models.py${reset}"
 cp /tmp/django-boilerplate/core/models.py $PROJECT/core
