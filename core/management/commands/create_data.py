@@ -18,7 +18,7 @@ def get_person():
 
 def create_persons():
     aux = []
-    for _ in progressbar(range(10), 'Persons'):
+    for _ in progressbar(range(50), 'Persons'):
         data = get_person()
         obj = Person(**data)
         aux.append(obj)

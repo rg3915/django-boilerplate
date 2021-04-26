@@ -115,6 +115,15 @@ usage: manage.py create_data [-h] ...
 Create data.
 ```
 
+## Screen
+
+![img/](img/login.png)
+
+![img/](img/person_list.png)
+
+![img/](img/person_detail.png)
+
+
 
 ### Folders
 
@@ -156,14 +165,6 @@ Create data.
 ├── README.md
 └── requirements.txt
 ```
-
-## Screen
-
-![img/](img/login.png)
-
-![img/](img/person_list.png)
-
-![img/](img/person_detail.png)
 
 ## Read
 
