@@ -68,6 +68,7 @@ python manage.py migrate
 
 create_app_crm
 edit_app_crm
+create_crm_templates
 
 # Confirm if create superuser.
 create_superuser

@@ -27,5 +27,5 @@ class Person(UuidModel, TimeStampedModel, Address, Document, Active):
     def __str__(self):
         return self.full_name
 
-    # def get_absolute_url(self):
-    #     return reverse_lazy('crm:person_detail', kwargs={'pk': self.pk})
+    def get_absolute_url(self):
+        return reverse_lazy('crm:person_detail', kwargs={'pk': self.pk})

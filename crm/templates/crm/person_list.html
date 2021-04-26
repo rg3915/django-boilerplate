@@ -1,0 +1,36 @@
+<!-- person_list.html -->
+{% extends "base.html" %}
+
+{% block content %}
+  <h1>
+    Lista
+    <a class="btn btn-primary" href="{% url 'crm:person_create' %}">Adicionar</a>
+  </h1>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Nome</th>
+        <th>E-mail</th>
+        <th>Ações</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for object in object_list %}
+        <tr>
+          <td>
+            <a href="{{ object.get_absolute_url }}">{{ object.full_name }}</a>
+          </td>
+          <td>{{ object.email|default:'---' }}</td>
+          <td>
+            <a href="{% url 'crm:person_update' object.pk %}">
+              <i class="fa fa-edit"></i>
+            </a>
+            <a href="{% url 'crm:person_delete' object.pk %}" style="padding-left: 7px">
+              <i class="fa fa-close no"></i>
+            </a>
+          </td>
+        </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+{% endblock content %}
