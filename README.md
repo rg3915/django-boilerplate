@@ -9,11 +9,23 @@ The project contains:
 * Settings config
 * App Accounts
     * login and logout
+
+<img src="img/login.png" width="200px">
+
 * App CORE
     * Abstract models
 * App CRM
     * CRUD
     * Templates
+
+<img src="img/person_list.png" width="200px">
+
+<img src="img/person_detail.png" width="200px">
+
+CRM Model
+
+<img src="img/models.png" width="300px">
+
 
 ## Packages
 
@@ -117,12 +129,13 @@ Create data.
 
 ## Screen
 
-![img/](img/login.png)
+![img/login](img/login.png)
 
-![img/](img/person_list.png)
+![img/person_list](img/person_list.png)
 
-![img/](img/person_detail.png)
+![img/person_detail](img/person_detail.png)
 
+![img/models.png](img/models.png)
 
 
 ### Folders
