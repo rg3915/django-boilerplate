@@ -144,7 +144,7 @@ create_core_templates() {
 create_static() {
     echo "${green}>>> Coping static.${reset}"
     mkdir -p $PROJECT/core/static/css/icons
-    mkdir $PROJECT/core/static/img
+    mkdir $PROJECT/core/static/{img,fonts}
     cp -R /tmp/django-boilerplate/core/static/* $PROJECT/core/static
 }
 

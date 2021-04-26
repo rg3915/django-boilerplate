@@ -157,6 +157,14 @@ Create data.
 └── requirements.txt
 ```
 
+## Screen
+
+![img/](img/login.png)
+
+![img/](img/person_list.png)
+
+![img/](img/person_detail.png)
+
 ## Read
 
 https://github.com/rg3915/django-auth-tutorial
