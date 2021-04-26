@@ -137,8 +137,8 @@ create_core_templates() {
 
 create_crm_templates() {
     echo "${green}>>> Coping crm templates.${reset}"
-    mkdir -p $PROJECT/crm/templates
-    cp /tmp/django-boilerplate/crm/templates/* $PROJECT/crm/templates
+    mkdir -p $PROJECT/crm/templates/crm
+    cp /tmp/django-boilerplate/crm/templates/crm/* $PROJECT/crm/templates/crm
 }
 
 create_management_commands() {
