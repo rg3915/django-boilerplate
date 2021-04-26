@@ -1,0 +1,38 @@
+<!-- base_login.html -->
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <base href="./">
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+  <link rel="shortcut icon" href="https://www.djangoproject.com/favicon.ico">
+  <title>{% block title %}{% endblock title %}</title>
+
+  <!-- Font-awesome -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+
+  <link href="{% static 'css/icons/simple-line-icons.min.css' %}" rel="stylesheet">
+
+  <!-- Main styles for this application-->
+  <link href="{% static 'css/login.css' %}" rel="stylesheet">
+  <link href="{% static 'css/form.css' %}" rel="stylesheet">
+
+  {% block css %}{% endblock css %}
+</head>
+
+<body class="app flex-row align-items-center">
+  <div class="container">
+    <div class="row justify-content-center">
+      {% block content %}{% endblock content %}
+    </div>
+  </div>
+  <!-- CoreUI and necessary plugins-->
+  <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
+</body>
+
+</html>

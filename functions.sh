@@ -129,6 +129,12 @@ create_utils() {
     sed -i "s/{PROJECT}/$PROJECT/g" $PROJECT/core/management/commands/create_data.py
 }
 
+create_accounts_templates() {
+    echo "${green}>>> Coping accounts templates.${reset}"
+    mkdir -p $PROJECT/accounts/templates/accounts
+    cp -R /tmp/django-boilerplate/accounts/templates/* $PROJECT/accounts/templates
+}
+
 create_core_templates() {
     echo "${green}>>> Coping core templates.${reset}"
     mkdir -p $PROJECT/core/templates/includes
@@ -137,8 +143,8 @@ create_core_templates() {
 
 create_static() {
     echo "${green}>>> Coping static.${reset}"
-    mkdir -p $PROJECT/core/static/css
-    cp /tmp/django-boilerplate/core/static/css/* $PROJECT/core/static/css
+    mkdir -p $PROJECT/core/static/css/icons
+    cp -R /tmp/django-boilerplate/core/static/css/* $PROJECT/core/static/css
 }
 
 create_crm_templates() {

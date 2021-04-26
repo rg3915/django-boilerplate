@@ -54,6 +54,7 @@ edit_core_urls
 edit_core_views
 create_management_commands
 create_utils
+create_accounts_templates
 create_core_templates
 create_static
 
