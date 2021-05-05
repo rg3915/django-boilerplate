@@ -17,17 +17,17 @@ source /tmp/django-boilerplate/functions.sh
 PROJECT=${1:-myproject}
 
 echo "Select Django version:"
-echo "2 - 2.2.20"
-echo "3 - 3.2"
+echo "2 - 2.2.21"
+echo "3 - 3.2.1"
 read -p "Choose from 2, 3 [3]: " DJANGO
 DJANGO=${DJANGO:-3}
 
 PYTHON_VERSION=3.8.9
-DJANGO_VERSION=3.2
+DJANGO_VERSION=3.2.1
 USERNAME="rg3915"
 
 if [[ $DJANGO == '2' ]]; then
-    DJANGO_VERSION=2.2.20
+    DJANGO_VERSION=2.2.21
 fi
 
 echo "${green}>>> You chose Django $DJANGO_VERSION.${reset}"
