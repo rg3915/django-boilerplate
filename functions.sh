@@ -33,6 +33,7 @@ install_django() {
     pip freeze | grep Faker >> requirements.txt
     pip freeze | grep isort >> requirements.txt
     pip freeze | grep python-decouple >> requirements.txt
+    pip install ipython[notebook]
 }
 
 create_env_gen() {
