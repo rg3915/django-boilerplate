@@ -72,22 +72,18 @@ class PersonListView(ListView):
 
 class PersonDetailView(DetailView):
     model = Person
-    paginate_by = 10
 
 
 class PersonCreateView(CreateView):
     model = Person
-    paginate_by = 10
     form_class = PersonForm
 
 
 class PersonUpdateView(UpdateView):
     model = Person
-    paginate_by = 10
     form_class = PersonForm
 
 
 class PersonDeleteView(DeleteView):
     model = Person
-    paginate_by = 10
     success_url = reverse_lazy('crm:person_list')
