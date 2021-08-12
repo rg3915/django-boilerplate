@@ -43,6 +43,7 @@ INSTALLED_APPS = [
     # 3rd apps
     'django_extensions',
     'widget_tweaks',
+    'django_seed',
     # my apps
     '{PROJECT}.accounts',
     '{PROJECT}.core',

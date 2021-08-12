@@ -5,11 +5,10 @@ from {PROJECT}.core.models import (
     Address,
     Document,
     TimeStampedModel,
-    UuidModel
 )
 
 
-class Person(UuidModel, TimeStampedModel, Address, Document, Active):
+class Person(TimeStampedModel, Address, Document, Active):
     first_name = models.CharField('nome', max_length=50)
     last_name = models.CharField('sobrenome', max_length=50, null=True, blank=True)  # noqa E501
     email = models.EmailField(null=True, blank=True)

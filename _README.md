@@ -21,6 +21,16 @@ python contrib/env_gen.py
 python manage.py migrate
 ```
 
+## Django Seed
+
+if running [django-seed](https://github.com/Brobin/django-seed) on **crm app** type:
+
+```
+python manage.py makemigrations  # because crm app
+python manage.py migrate
+python manage.py seed crm --number=15
+```
+
 
 ## Este projeto foi feito com:
 
@@ -43,4 +53,15 @@ source .venv/bin/activate
 pip install -r requirements.txt
 python contrib/env_gen.py
 python manage.py migrate
+```
+
+
+## Django Seed
+
+Se quiser rodar o [django-seed](https://github.com/Brobin/django-seed) na **app crm** digite:
+
+```
+python manage.py makemigrations  # por causa da app crm
+python manage.py migrate
+python manage.py seed crm --number=15
 ```
