@@ -1,6 +1,5 @@
 from django.db import models
 from django.urls import reverse_lazy
-
 from {PROJECT}.core.models import (
     Active,
     Address,

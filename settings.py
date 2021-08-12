@@ -15,7 +15,6 @@ https://docs.djangoproject.com/en/{LINK_VERSION}/ref/settings/
 from decouple import Csv, config
 from dj_database_url import parse as dburl
 
-
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 {SETTINGS_BASE_DIR}
 
@@ -41,8 +40,9 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    # thirty apps
+    # 3rd apps
     'django_extensions',
+    'widget_tweaks',
     # my apps
     '{PROJECT}.accounts',
     '{PROJECT}.core',

@@ -25,11 +25,12 @@ install_django() {
     # Install Django
     echo "${green}>>> Installing the Django${reset}"
     pip install -U pip
-    pip install django==$DJANGO_VERSION dj-database-url django-extensions django-localflavor isort python-decouple faker ipdb
+    pip install django==$DJANGO_VERSION dj-database-url django-extensions django-localflavor django-widget-tweaks isort python-decouple faker ipdb
     echo Django==$DJANGO_VERSION > requirements.txt
     pip freeze | grep dj-database-url >> requirements.txt
     pip freeze | grep django-extensions >> requirements.txt
     pip freeze | grep django-localflavor >> requirements.txt
+    pip freeze | grep django-widget-tweaks >> requirements.txt
     pip freeze | grep Faker >> requirements.txt
     pip freeze | grep isort >> requirements.txt
     pip freeze | grep python-decouple >> requirements.txt
@@ -105,6 +106,16 @@ edit_urls() {
     echo "${green}>>> Editing urls.py${reset}"
     cp /tmp/django-boilerplate/urls.py $PROJECT/
     sed -i "s/{PROJECT}/$PROJECT/g" $PROJECT/urls.py
+}
+
+edit_accounts_forms() {
+    echo "${green}>>> Editing accounts/forms.py${reset}"
+    cp /tmp/django-boilerplate/accounts/forms.py $PROJECT/accounts
+}
+
+edit_accounts_views() {
+    echo "${green}>>> Editing accounts/views.py${reset}"
+    cp /tmp/django-boilerplate/accounts/views.py $PROJECT/accounts
 }
 
 edit_accounts_urls() {

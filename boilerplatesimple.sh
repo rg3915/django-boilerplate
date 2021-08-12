@@ -22,7 +22,7 @@ echo "3 - 3.2.*"
 read -p "Choose from 2, 3 [3]: " DJANGO
 DJANGO=${DJANGO:-3}
 
-PYTHON_VERSION=3.9.4
+PYTHON_VERSION=3.9.6
 DJANGO_VERSION=3.2.*
 USERNAME="rg3915"
 
@@ -50,6 +50,8 @@ create_project
 edit_settings
 edit_urls
 edit_accounts_urls
+edit_accounts_forms
+edit_accounts_views
 edit_core_urls
 edit_core_views
 create_management_commands

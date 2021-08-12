@@ -1,5 +1,4 @@
 from django.core.management.base import BaseCommand
-
 from {PROJECT}.crm.models import Person
 from {PROJECT}.utils import utils as u
 from {PROJECT}.utils.progress_bar import progressbar

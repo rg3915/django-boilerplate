@@ -1,5 +1,4 @@
 from django.urls import path
-
 from {PROJECT}.crm import views as v
 
 app_name = 'crm'
