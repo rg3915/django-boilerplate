@@ -2,10 +2,28 @@
 {% extends "base.html" %}
 
 {% block content %}
-  <h1>
-    Lista
-    <a class="btn btn-primary" href="{% url 'crm:person_create' %}">Adicionar</a>
-  </h1>
+<div>
+  <div class="row">
+    <div class="col-auto">
+      <h1>Lista</h1>
+    </div>
+    <div class="col-auto">
+      <a class="btn btn-primary" href="{% url 'crm:person_create' %}">Adicionar</a>
+    </div>
+    <div class="col">
+      <form action="." method="GET" class="form-inline">
+        <div class="form-group flex-grow-1">
+          <input id="id_search" name="search" class="form-control flex-grow-1" type="text" placeholder="Buscar..." />
+        </div>
+        <div class="form-group pl-2">
+          <button type="submit" class="btn btn-success">Buscar</button>
+        </div>
+        <div class="form-group pl-2">
+          <a class="btn btn-link" href=".">Limpar</a>
+        </div>
+      </form>
+    </div>
+  </div>
   <table class="table">
     <thead>
       <tr>
@@ -16,22 +34,25 @@
     </thead>
     <tbody>
       {% for object in object_list %}
-        <tr>
-          <td>
-            <a href="{{ object.get_absolute_url }}">{{ object.full_name }}</a>
-          </td>
-          <td>{{ object.email|default:'---' }}</td>
-          <td>
-            <a href="{% url 'crm:person_update' object.pk %}">
-              <i class="fa fa-edit"></i>
-            </a>
-            <a href="{% url 'crm:person_delete' object.pk %}" style="padding-left: 7px">
-              <i class="fa fa-close no"></i>
-            </a>
-          </td>
-        </tr>
+      <tr>
+        <td>
+          <a href="{{ object.get_absolute_url }}">{{ object.full_name }}</a>
+        </td>
+        <td>{{ object.email|default:'---' }}</td>
+        <td>
+          <a href="{% url 'crm:person_update' object.pk %}">
+            <i class="fa fa-edit"></i>
+          </a>
+          <a href="{% url 'crm:person_delete' object.pk %}" class="pl-2">
+            <i class="fa fa-close no"></i>
+          </a>
+        </td>
+      </tr>
       {% endfor %}
     </tbody>
   </table>
-  {% include "includes/pagination.html" %}
+</div>
+
+{% include "includes/pagination.html" %}
+
 {% endblock content %}

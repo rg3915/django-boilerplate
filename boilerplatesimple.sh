@@ -51,6 +51,7 @@ edit_settings
 edit_urls
 edit_accounts_urls
 edit_accounts_forms
+edit_accounts_mixins
 edit_accounts_views
 edit_core_urls
 edit_core_views

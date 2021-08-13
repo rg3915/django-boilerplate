@@ -118,6 +118,11 @@ edit_accounts_views() {
     cp /tmp/django-boilerplate/accounts/views.py $PROJECT/accounts
 }
 
+edit_accounts_mixins() {
+    echo "${green}>>> Editing accounts/mixins.py${reset}"
+    cp /tmp/django-boilerplate/accounts/mixins.py $PROJECT/accounts
+}
+
 edit_accounts_urls() {
     echo "${green}>>> Editing accounts/urls.py${reset}"
     cp /tmp/django-boilerplate/accounts/urls.py $PROJECT/accounts

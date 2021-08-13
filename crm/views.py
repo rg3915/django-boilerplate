@@ -1,3 +1,4 @@
+from django.db.models import Q
 from django.shortcuts import redirect, render
 from django.urls import reverse_lazy
 from django.views.generic import (
@@ -10,11 +11,22 @@ from django.views.generic import (
 
 from .forms import PersonForm
 from .models import Person
+from .mixins import SearchMixin
 
 
 def person_list(request):
     template_name = 'crm/person_list.html'
     object_list = Person.objects.all()
+
+    search = request.GET.get('search')
+    print(search)
+    if search:
+        object_list = object_list.filter(
+            Q(first_name__icontains=search) |
+            Q(last_name__icontains=search) |
+            Q(email__icontains=search)
+        )
+
     context = {'object_list': object_list}
     return render(request, template_name, context)
 
@@ -65,7 +77,7 @@ def person_delete(request, pk):
     return render(request, template_name, context)
 
 
-class PersonListView(ListView):
+class PersonListView(SearchMixin, ListView):
     model = Person
     paginate_by = 10
 
