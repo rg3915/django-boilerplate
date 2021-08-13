@@ -51,7 +51,6 @@ edit_settings
 edit_urls
 edit_accounts_urls
 edit_accounts_forms
-edit_accounts_mixins
 edit_accounts_views
 edit_core_urls
 edit_core_views
@@ -73,6 +72,7 @@ python manage.py migrate
 
 create_app_crm
 edit_app_crm
+edit_crm_mixins
 create_crm_templates
 
 # Confirm if create superuser.
