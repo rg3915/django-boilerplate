@@ -244,7 +244,7 @@ edit_expense_views() {
 
 create_expense_templates() {
     echo "${green}>>> Coping expense templates.${reset}"
-    mkdir -p $PROJECT/expense/templates/expense
+    mkdir -p $PROJECT/expense/templates/expense/includes
     cp /tmp/django-boilerplate/expense/templates/expense/* $PROJECT/expense/templates/expense
 }
 
