@@ -23,12 +23,10 @@ python manage.py migrate
 
 ## Django Seed
 
-if running [django-seed](https://github.com/Brobin/django-seed) on **crm app** type:
+if running [django-seed](https://github.com/Brobin/django-seed) type:
 
 ```
-python manage.py makemigrations  # because crm app
-python manage.py migrate
-python manage.py seed crm --number=15
+python manage.py seed crm expense --number=15
 ```
 
 
@@ -58,10 +56,8 @@ python manage.py migrate
 
 ## Django Seed
 
-Se quiser rodar o [django-seed](https://github.com/Brobin/django-seed) na **app crm** digite:
+Se quiser rodar o [django-seed](https://github.com/Brobin/django-seed) digite:
 
 ```
-python manage.py makemigrations  # por causa da app crm
-python manage.py migrate
-python manage.py seed crm --number=15
+python manage.py seed crm expense --number=15
 ```

@@ -8,7 +8,9 @@ The project contains:
 
 * Settings config
 * App Accounts
-    * login and logout
+    * login
+    * logout
+    * signup
 
 <img src="img/login.png" width="200px">
 
@@ -17,6 +19,11 @@ The project contains:
 * App CRM
     * CRUD
     * Templates
+* App Expense
+    * CRUD
+    * Templates
+    * Modal
+    * [htmx](https://htmx.org/)
 
 <img src="img/person_list.png" width="200px">
 
@@ -39,7 +46,7 @@ Packages used in conjunction with Django.
 * [isort](https://pypi.org/project/isort/)
 * [python-decouple](https://pypi.org/project/python-decouple/)
 * [django-seed](https://github.com/Brobin/django-seed)
-
+* [htmx](https://htmx.org/)
 
 ## Usage
 
@@ -72,19 +79,18 @@ printf "Type:\n`tput setaf 2`source boilerplatesimple.sh myproject\n"'
 
 ### App CRM
 
-CRM is initially without migrations. Giving you the freedom to delete the app.
-However, if you want to use it, enter the following commands:
+CRM example.
 
 ```
-python manage.py makemigrations
-python manage.py migrate
 python manage.py create_data
 python manage.py runserver
 ```
 
 ### App Expense
 
-TODO
+Example of a simple expense.
+
+Exploring Boostrap modal and [htmx](https://htmx.org/).
 
 ### New app
 
@@ -150,20 +156,34 @@ Create data.
 
 ![img/person_detail](img/person_detail.png)
 
+![img/modal](img/modal.png)
+
 ![img/models.png](img/models.png)
+
+![img/models_expense.png](img/models_expense.png)
+
+![img/models_crm_expense.png](img/models_crm_expense.png)
 
 
 ### Folders
 
 ```
 .
+.
+├── contrib
+│   └── env_gen.py
 ├── manage.py
 ├── myproject
 │   ├── asgi.py
 │   ├── accounts
 │   │   ├── admin.py
 │   │   ├── apps.py
+│   │   ├── forms.py
 │   │   ├── models.py
+│   │   ├── templates
+│   │   │   └── accounts
+│   │   │       ├── login.html
+│   │   │       └── signup.html
 │   │   ├── tests.py
 │   │   ├── urls.py
 │   │   └── views.py
@@ -176,6 +196,28 @@ Create data.
 │   │   │       ├── hello.py
 │   │   │       └── __init__.py
 │   │   ├── models.py
+│   │   ├── static
+│   │   │   ├── css
+│   │   │   │   ├── form.css
+│   │   │   │   ├── icons
+│   │   │   │   │   └── simple-line-icons.min.css
+│   │   │   │   ├── login.css
+│   │   │   │   └── style.css
+│   │   │   ├── fonts
+│   │   │   │   ├── Simple-Line-Icons.eot
+│   │   │   │   ├── Simple-Line-Icons.svg
+│   │   │   │   ├── Simple-Line-Icons.ttf
+│   │   │   │   ├── Simple-Line-Icons.woff
+│   │   │   │   └── Simple-Line-Icons.woff2
+│   │   │   └── img
+│   │   │       └── django-logo-negative.png
+│   │   ├── templates
+│   │   │   ├── base.html
+│   │   │   ├── base_login.html
+│   │   │   ├── includes
+│   │   │   │   ├── nav.html
+│   │   │   │   └── pagination.html
+│   │   │   └── index.html
 │   │   ├── tests.py
 │   │   ├── urls.py
 │   │   └── views.py
@@ -183,13 +225,43 @@ Create data.
 │   │   ├── admin.py
 │   │   ├── apps.py
 │   │   ├── forms.py
+│   │   ├── mixins.py
 │   │   ├── models.py
+│   │   ├── templates
+│   │   │   └── crm
+│   │   │       ├── person_confirm_delete.html
+│   │   │       ├── person_detail.html
+│   │   │       ├── person_form.html
+│   │   │       └── person_list.html
+│   │   ├── tests.py
+│   │   ├── urls.py
+│   │   └── views.py
+│   ├── expense
+│   │   ├── admin.py
+│   │   ├── apps.py
+│   │   ├── forms.py
+│   │   ├── mixins.py
+│   │   ├── models.py
+│   │   ├── templates
+│   │   │   └── expense
+│   │   │       ├── expense_detail.html
+│   │   │       ├── expense_form.html
+│   │   │       ├── expense_list.html
+│   │   │       ├── expense_result.html
+│   │   │       ├── expense_table.html
+│   │   │       ├── expense_update_form.html
+│   │   │       └── includes
+│   │   │           ├── add_modal.html
+│   │   │           ├── detail_modal.html
+│   │   │           └── update_modal.html
 │   │   ├── tests.py
 │   │   ├── urls.py
 │   │   └── views.py
 │   ├── settings.py
 │   ├── urls.py
-│   └── wsgi.py
+│   ├── utils
+│   │   ├── progress_bar.py
+│   │   └── utils.py
 ├── README.md
 └── requirements.txt
 ```
