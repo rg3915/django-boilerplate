@@ -158,10 +158,6 @@ Create data.
 
 ![img/modal](img/modal.png)
 
-![img/models.png](img/models.png)
-
-![img/models_expense.png](img/models_expense.png)
-
 ![img/models_crm_expense.png](img/models_crm_expense.png)
 
 
