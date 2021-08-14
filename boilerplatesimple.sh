@@ -73,6 +73,10 @@ create_crm_templates
 
 create_app_expense
 
+# Remove comments of settings.py
+sed -i "s/# '$PROJECT.crm'/'$PROJECT.crm'/g" $PROJECT/settings.py
+sed -i "s/# '$PROJECT.expense'/'$PROJECT.expense'/g" $PROJECT/settings.py
+
 # migrate
 python manage.py makemigrations
 python manage.py migrate
