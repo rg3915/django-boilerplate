@@ -1,6 +1,6 @@
-from backend.accounts.forms import SignupForm
 from django.urls import reverse_lazy
 from django.views.generic import CreateView
+from {PROJECT}.accounts.forms import SignupForm
 
 
 class SignUpView(CreateView):

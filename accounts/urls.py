@@ -1,6 +1,6 @@
-from backend.accounts import views as v
 from django.contrib.auth.views import LoginView, LogoutView
 from django.urls import path
+from {PROJECT}.accounts import views as v
 
 urlpatterns = [
     path(

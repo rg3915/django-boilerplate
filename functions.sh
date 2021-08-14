@@ -122,11 +122,13 @@ edit_accounts_forms() {
 edit_accounts_views() {
     echo "${green}>>> Editing accounts/views.py${reset}"
     cp /tmp/django-boilerplate/accounts/views.py $PROJECT/accounts
+    sed -i "s/{PROJECT}/$PROJECT/g" $PROJECT/accounts/views.py
 }
 
 edit_accounts_urls() {
     echo "${green}>>> Editing accounts/urls.py${reset}"
     cp /tmp/django-boilerplate/accounts/urls.py $PROJECT/accounts
+    sed -i "s/{PROJECT}/$PROJECT/g" $PROJECT/accounts/urls.py
 }
 
 edit_core_urls() {
