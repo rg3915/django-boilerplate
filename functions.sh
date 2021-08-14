@@ -102,6 +102,12 @@ edit_app_crm() {
     fi
 }
 
+edit_app_expense() {
+    if [[ $DJANGO == '3' ]]; then
+        sed -i "s/expense/$PROJECT.expense/g" $PROJECT/expense/apps.py
+    fi
+}
+
 edit_urls() {
     echo "${green}>>> Editing urls.py${reset}"
     cp /tmp/django-boilerplate/urls.py $PROJECT/
@@ -204,21 +210,71 @@ edit_crm_views() {
     cp /tmp/django-boilerplate/crm/views.py $PROJECT/crm
 }
 
+edit_expense_admin() {
+    echo "${green}>>> Editing expense/admin.py${reset}"
+    cp /tmp/django-boilerplate/expense/admin.py $PROJECT/expense
+}
+
+edit_expense_forms() {
+    echo "${green}>>> Editing expense/forms.py${reset}"
+    cp /tmp/django-boilerplate/expense/forms.py $PROJECT/expense
+}
+
+edit_expense_mixins() {
+    echo "${green}>>> Editing expense/mixins.py${reset}"
+    cp /tmp/django-boilerplate/expense/mixins.py $PROJECT/expense
+}
+
+edit_expense_models() {
+    echo "${green}>>> Editing expense/models.py${reset}"
+    cp /tmp/django-boilerplate/expense/models.py $PROJECT/expense
+    sed -i "s/{PROJECT}/$PROJECT/g" $PROJECT/expense/models.py
+}
+
+edit_expense_urls() {
+    echo "${green}>>> Editing expense/urls.py${reset}"
+    cp /tmp/django-boilerplate/expense/urls.py $PROJECT/expense
+    sed -i "s/{PROJECT}/$PROJECT/g" $PROJECT/expense/urls.py
+}
+
+edit_expense_views() {
+    echo "${green}>>> Editing expense/views.py${reset}"
+    cp /tmp/django-boilerplate/expense/views.py $PROJECT/expense
+}
+
+create_expense_templates() {
+    echo "${green}>>> Coping expense templates.${reset}"
+    mkdir -p $PROJECT/expense/templates/expense
+    cp /tmp/django-boilerplate/expense/templates/expense/* $PROJECT/expense/templates/expense
+}
+
 create_app_crm() {
     echo "${green}>>> Creating the app 'crm' ...${reset}"
     cd $PROJECT
     python ../manage.py startapp crm
     cd ..
 
-    # Remove comment.
-    sed -i "s/# '$PROJECT.crm'/'$PROJECT.crm'/g" $PROJECT/settings.py
-    sed -i "s/# path('crm/path('crm/g" $PROJECT/urls.py
-
     edit_crm_admin
     edit_crm_forms
     edit_crm_models
     edit_crm_urls
     edit_crm_views
+}
+
+create_app_expense() {
+    echo "${green}>>> Creating the app 'expense' ...${reset}"
+    cd $PROJECT
+    python ../manage.py startapp expense
+    cd ..
+
+    edit_app_expense
+    edit_expense_admin
+    edit_expense_forms
+    edit_expense_mixins
+    edit_expense_models
+    edit_expense_urls
+    edit_expense_views
+    create_expense_templates
 }
 
 create_superuser() {

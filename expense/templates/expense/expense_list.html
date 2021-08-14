@@ -1,0 +1,67 @@
+<!-- expense_list.html -->
+{% extends "base.html" %}
+
+{% block content %}
+<div>
+  <div class="row">
+    <div class="col-auto">
+      <h1>Lista de Despesas</h1>
+    </div>
+    <div class="col-auto">
+      <a
+        href=""
+        class="btn btn-primary"
+        data-toggle="modal"
+        data-target="#addModal"
+        hx-get="{% url 'expense:expense_create' %}"
+        hx-target="#addContent"
+        hx-swap="innerHTML"
+      >Adicionar</a>
+    </div>
+    <div class="col">
+      <form action="." method="GET" class="form-inline">
+        <div class="form-group flex-grow-1">
+          <input id="id_search" name="search" class="form-control flex-grow-1" type="text" placeholder="Buscar..." />
+        </div>
+        <div class="form-group pl-2">
+          <button type="submit" class="btn btn-success">Buscar</button>
+        </div>
+        <div class="form-group pl-2">
+          <a class="btn btn-link" href=".">Limpar</a>
+        </div>
+      </form>
+    </div>
+  </div>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Descrição</th>
+        <th>Pago a</th>
+        <th>Valor</th>
+        <th>Data de pagamento</th>
+        <th>Pago?</th>
+        <th>Ações</th>
+      </tr>
+    </thead>
+    <tbody id="expenseTbody">
+      {% include "./expense_table.html" %}
+    </tbody>
+  </table>
+</div>
+
+{% include "includes/pagination.html" %}
+
+{% include "./includes/detail_modal.html" %}
+{% include "./includes/add_modal.html" %}
+{% include "./includes/update_modal.html" %}
+
+{% endblock content %}
+
+{% block js %}
+<script>
+// Necessário por causa do delete
+document.body.addEventListener('htmx:configRequest', (event) => {
+  event.detail.headers['X-CSRFToken'] = '{{ csrf_token }}';
+});
+</script>
+{% endblock js %}

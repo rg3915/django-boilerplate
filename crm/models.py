@@ -1,11 +1,6 @@
 from django.db import models
 from django.urls import reverse_lazy
-from {PROJECT}.core.models import (
-    Active,
-    Address,
-    Document,
-    TimeStampedModel,
-)
+from {PROJECT}.core.models import Active, Address, Document, TimeStampedModel
 
 
 class Person(TimeStampedModel, Address, Document, Active):

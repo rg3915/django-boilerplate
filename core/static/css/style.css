@@ -7,6 +7,48 @@ label.required:after {
   color: red;
 }
 
+.span-is-link {
+  cursor: pointer;
+}
+
+.link {
+  color: #007bff;
+}
+
+.ok {
+  color: green;
+}
+
 .no {
   color: red;
+}
+
+tr.htmx-swapping td {
+  opacity: 0;
+  transition: opacity 0.5s ease-out;
+}
+
+.htmx-settling tr.deactivate td {
+  background: lightcoral;
+}
+
+.htmx-settling tr.activate td {
+  background: darkseagreen;
+}
+
+tr td {
+  transition: all 1.2s;
+}
+
+.deactivate {
+  text-decoration: line-through;
+}
+
+input[type=checkbox] {
+  /* Double-sized Checkboxes */
+  -ms-transform: scale(2);
+  -moz-transform: scale(2);
+  -webkit-transform: scale(2);
+  -o-transform: scale(2);
+  padding: 10px;
 }

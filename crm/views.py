@@ -10,8 +10,8 @@ from django.views.generic import (
 )
 
 from .forms import PersonForm
-from .models import Person
 from .mixins import SearchMixin
+from .models import Person
 
 
 def person_list(request):
@@ -19,7 +19,6 @@ def person_list(request):
     object_list = Person.objects.all()
 
     search = request.GET.get('search')
-    print(search)
     if search:
         object_list = object_list.filter(
             Q(first_name__icontains=search) |

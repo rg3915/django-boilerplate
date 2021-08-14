@@ -31,13 +31,14 @@ CRM Model
 
 Packages used in conjunction with Django.
 
-* [Python 3.8.9](https://www.python.org/downloads/)
-* [Django 3.2.2](https://www.djangoproject.com/)
+* [Python 3.9.6](https://www.python.org/downloads/)
+* [Django 3.2.6](https://www.djangoproject.com/)
 * [dj-database-url](https://pypi.org/project/dj-database-url/)
 * [django-extensions](https://django-extensions.readthedocs.io/en/latest/installation_instructions.html)
 * [django-localflavor](https://pypi.org/project/django-localflavor/)
 * [isort](https://pypi.org/project/isort/)
 * [python-decouple](https://pypi.org/project/python-decouple/)
+* [django-seed](https://github.com/Brobin/django-seed)
 
 
 ## Usage
@@ -81,6 +82,10 @@ python manage.py create_data
 python manage.py runserver
 ```
 
+### App Expense
+
+TODO
+
 ### New app
 
 If create new app edit `*/apps.py`.
@@ -91,11 +96,21 @@ If create new app edit `*/apps.py`.
 # accounts/apps.py
 # core/apps.py
 # crm/apps.py
+# expense/apps.py
 name = 'PROJECT.<app name>'
 # example
 name = 'myproject.accounts'
 name = 'myproject.core'
 name = 'myproject.crm'
+name = 'myproject.expense'
+```
+
+### django-seed
+
+To populate database with fake data, use [django-seed](https://github.com/Brobin/django-seed) and type
+
+```
+python manage.py seed crm expense --number=15
 ```
 
 ### Base Models

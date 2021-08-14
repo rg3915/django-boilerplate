@@ -1,0 +1,45 @@
+<!-- expense_result.html -->
+<tr id="trExpense{{ object.pk }}">
+  <td>
+    <a
+      href=""
+      data-toggle="modal"
+      data-target="#detailModal"
+      hx-get="{{ object.get_absolute_url }}"
+      hx-target="#detailContent"
+      hx-indicator=".htmx-indicator"
+      hx-swap="innerHTML"
+    >{{ object.description }}
+  </td>
+  <td>{{ object.person|default:'---' }}</td>
+  <td>{{ object.value }}</td>
+  <td>{{ object.payment_date|date:'d/m/Y'|default:'---' }}</td>
+  <td>
+    <span class="text-center">
+      {% if object.paid %}
+        <i class="fa fa-check-circle ok"></i>
+      {% else %}
+        <i class="fa fa-times-circle no"></i>
+      {% endif %}
+    </span>
+  </td>
+  <td>
+    <span
+      data-toggle="modal"
+      data-target="#updateModal"
+      hx-get="{% url 'expense:expense_update' object.pk %}"
+      hx-target="#updateContent"
+      hx-swap="innerHTML"
+    >
+      <i class="fa fa-edit link span-is-link"></i>
+    </span>
+    <span
+      hx-delete="{% url 'expense:expense_delete' object.pk %}"
+      hx-confirm="Deseja mesmo deletar?"
+      hx-target="closest tr"
+      hx-swap="outerHTML swap:500ms"
+    >
+      <i class="fa fa-trash no span-is-link pl-2"></i>
+    </span>
+  </td>
+</tr>

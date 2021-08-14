@@ -66,20 +66,23 @@ cp /tmp/django-boilerplate/core/models.py $PROJECT/core
 edit_app_accounts
 edit_app_core
 
-# migrate
-python manage.py makemigrations
-python manage.py migrate
-
 create_app_crm
 edit_app_crm
 edit_crm_mixins
 create_crm_templates
+
+create_app_expense
+
+# migrate
+python manage.py makemigrations
+python manage.py migrate
 
 # Confirm if create superuser.
 create_superuser
 
 echo "${red}>>> Important: Dont add .env in your public repository.${reset}"
 echo "${red}>>> KEEP YOUR SECRET_KEY AND PASSWORDS IN SECRET!!!\n${reset}"
+echo "${green}>>> [Optional] run python manage.py seed crm expense --number=15${reset}"
 echo "${green}>>> Done${reset}"
 # https://www.gnu.org/software/sed/manual/sed.html
 
