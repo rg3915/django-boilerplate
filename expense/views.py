@@ -52,6 +52,7 @@ def expense_update(request, pk):
 
 @require_http_methods(['DELETE'])
 def expense_delete(request, pk):
+    template_name = 'expense/expense_table.html'
     obj = Expense.objects.get(pk=pk)
     obj.delete()
-    return render(request, 'expense/expense_table.html')
+    return render(request, template_name)
