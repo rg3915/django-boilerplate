@@ -148,6 +148,30 @@ usage: manage.py create_data [-h] ...
 Create data.
 ```
 
+### Graphic model Django with PyGraphViz
+
+```
+sudo apt-get install -y graphviz libgraphviz-dev pkg-config
+python3 -m venv .venv
+source .venv/bin/activate
+pip install -r requirements.txt
+pip install pygraphviz
+pip uninstall pyparsing
+pip install -Iv https://pypi.python.org/packages/source/p/pyparsing/pyparsing-1.5.7.tar.gz#md5=9be0fcdcc595199c646ab317c1d9a709
+pip install pydot
+pip install django-extensions
+```
+
+
+
+The next command generate the graphic of model.
+
+```
+python manage.py graph_models -e -g -l dot -o core.png core  # only app core
+python manage.py graph_models -a -g -o models.png  # all
+```
+
+
 ## Screen
 
 ![img/login](img/login.png)
