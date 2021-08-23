@@ -45,10 +45,10 @@ INSTALLED_APPS = [
     'widget_tweaks',
     'django_seed',
     # my apps
-    '{PROJECT}.accounts',
-    '{PROJECT}.core',
-    # '{PROJECT}.crm',
-    # '{PROJECT}.expense',
+    '{PROJECT}.accounts.apps.AccountsConfig',
+    '{PROJECT}.core.apps.CoreConfig',
+    '{PROJECT}.crm.apps.CrmConfig',
+    '{PROJECT}.expense.apps.ExpenseConfig',
 ]
 
 MIDDLEWARE = [
