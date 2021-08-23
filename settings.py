@@ -47,8 +47,8 @@ INSTALLED_APPS = [
     # my apps
     '{PROJECT}.accounts.apps.AccountsConfig',
     '{PROJECT}.core.apps.CoreConfig',
-    '{PROJECT}.crm.apps.CrmConfig',
-    '{PROJECT}.expense.apps.ExpenseConfig',
+    # '{PROJECT}.crm.apps.CrmConfig',
+    # '{PROJECT}.expense.apps.ExpenseConfig',
 ]
 
 MIDDLEWARE = [
