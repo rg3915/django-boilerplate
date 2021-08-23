@@ -14,7 +14,7 @@ reset=`tput sgr0`
 
 source /tmp/django-boilerplate/functions.sh
 
-PROJECT=${1:-myproject}
+PROJECT=${1:-backend}
 
 echo "Select Django version:"
 echo "2 - 2.2.*"
