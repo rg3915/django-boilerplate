@@ -7,10 +7,11 @@ from {PROJECT}.utils.progress_bar import progressbar
 def get_person():
     first_name = u.gen_first_name()
     last_name = u.gen_last_name()
+    email = u.gen_email(first_name, last_name)
     d = dict(
         first_name=first_name,
         last_name=last_name,
-        email=u.gen_email(first_name, last_name),
+        email=email,
     )
     return d
 
