@@ -15,6 +15,7 @@ reset=`tput sgr0`
 source /tmp/django-boilerplate/functions.sh
 
 PROJECT=${1:-backend}
+BASE=${2}  # type --base
 
 echo "Select Django version:"
 echo "2 - 2.2.*"
@@ -49,6 +50,11 @@ create_project
 
 edit_settings
 edit_urls
+
+if [[ $BASE == '--base' ]]; then
+    exit 1
+fi
+
 edit_accounts_urls
 edit_accounts_forms
 edit_accounts_views
