@@ -20,7 +20,7 @@ PYTHON_VERSION=3.9.6
 DJANGO_VERSION=4.0
 USERNAME="rg3915"
 
-echo "${green}>>> You chose Django $DJANGO_VERSION.${reset}"
+echo "${green}>>> Django: $DJANGO_VERSION.${reset}"
 
 echo "${green}>>> The name of the project is '$PROJECT'.${reset}"
 
