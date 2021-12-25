@@ -25,7 +25,7 @@ install_django() {
     # Install Django
     echo "${green}>>> Installing the Django${reset}"
     pip install -U pip
-    pip install django==$DJANGO_VERSION dj-database-url django-extensions django-localflavor django-widget-tweaks django-seed isort python-decouple faker ipdb
+    pip install django==$DJANGO_VERSION dj-database-url django-extensions django-localflavor django-widget-tweaks django-seed isort python-decouple faker ipdb psycopg2-binary
     echo Django==$DJANGO_VERSION > requirements.txt
     pip freeze | grep dj-database-url >> requirements.txt
     pip freeze | grep django-extensions >> requirements.txt
@@ -34,6 +34,7 @@ install_django() {
     pip freeze | grep Faker >> requirements.txt
     pip freeze | grep isort >> requirements.txt
     pip freeze | grep python-decouple >> requirements.txt
+    pip freeze | grep psycopg2-binary >> requirements.txt
     pip install ipython[notebook]
 }
 
