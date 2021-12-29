@@ -68,45 +68,27 @@ edit_settings() {
     sed -i "s/{PROJECT}/$PROJECT/g" $PROJECT/settings.py
     sed -i "s/{DJANGO_VERSION}/$DJANGO_VERSION/g" $PROJECT/settings.py
 
-    # Troca import, BASE_DIR
-    if [[ $DJANGO == '2' ]]; then
-        sed -i "s/{LINK_VERSION}/2.2/g" $PROJECT/settings.py
-        sed -i "s/# SETTINGS_IMPORT/import os/g" $PROJECT/settings.py
-        sed -i "s/{SETTINGS_BASE_DIR}/BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))/g" $PROJECT/settings.py
-        sed -i "s/{DEFAULT_DBURL}/default_dburl = 'sqlite:\/\/\/' + os.path.join(BASE_DIR, 'db.sqlite3')/g" $PROJECT/settings.py
-        sed -i "s/{STATIC_ROOT}/STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')/g" $PROJECT/settings.py
-        sed -i "s/DEFAULT_AUTO_FIELD/# DEFAULT_AUTO_FIELD/g" $PROJECT/settings.py
-    else
-        sed -i "s/{LINK_VERSION}/3.2/g" $PROJECT/settings.py
-        sed -i "s/# SETTINGS_IMPORT/from pathlib import Path/g" $PROJECT/settings.py
-        sed -i "s/{SETTINGS_BASE_DIR}/BASE_DIR = Path(__file__).resolve().parent.parent/g" $PROJECT/settings.py
-        sed -i "s/{DEFAULT_DBURL}/default_dburl = 'sqlite:\/\/\/' + str(BASE_DIR \/ 'db.sqlite3')/g" $PROJECT/settings.py
-        sed -i "s/{STATIC_ROOT}/STATIC_ROOT = BASE_DIR.joinpath('staticfiles')/g" $PROJECT/settings.py
-    fi
+    sed -i "s/{LINK_VERSION}/4.0/g" $PROJECT/settings.py
+    sed -i "s/# SETTINGS_IMPORT/from pathlib import Path/g" $PROJECT/settings.py
+    sed -i "s/{SETTINGS_BASE_DIR}/BASE_DIR = Path(__file__).resolve().parent.parent/g" $PROJECT/settings.py
+    sed -i "s/{DEFAULT_DBURL}/default_dburl = 'sqlite:\/\/\/' + str(BASE_DIR \/ 'db.sqlite3')/g" $PROJECT/settings.py
+    sed -i "s/{STATIC_ROOT}/STATIC_ROOT = BASE_DIR.joinpath('staticfiles')/g" $PROJECT/settings.py
 }
 
 edit_app_accounts() {
-    if [[ $DJANGO == '3' ]]; then
-        sed -i "s/accounts/$PROJECT.accounts/g" $PROJECT/accounts/apps.py
-    fi
+    sed -i "s/accounts/$PROJECT.accounts/g" $PROJECT/accounts/apps.py
 }
 
 edit_app_core() {
-    if [[ $DJANGO == '3' ]]; then
-        sed -i "s/core/$PROJECT.core/g" $PROJECT/core/apps.py
-    fi
+    sed -i "s/core/$PROJECT.core/g" $PROJECT/core/apps.py
 }
 
 edit_app_crm() {
-    if [[ $DJANGO == '3' ]]; then
-        sed -i "s/crm/$PROJECT.crm/g" $PROJECT/crm/apps.py
-    fi
+    sed -i "s/crm/$PROJECT.crm/g" $PROJECT/crm/apps.py
 }
 
 edit_app_expense() {
-    if [[ $DJANGO == '3' ]]; then
-        sed -i "s/expense/$PROJECT.expense/g" $PROJECT/expense/apps.py
-    fi
+    sed -i "s/expense/$PROJECT.expense/g" $PROJECT/expense/apps.py
 }
 
 edit_urls() {

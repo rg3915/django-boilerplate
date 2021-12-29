@@ -26,8 +26,6 @@ echo "${green}>>> The name of the project is '$PROJECT'.${reset}"
 
 echo "${green}>>> LANGUAGE_CODE is pt-br.${reset}"
 
-echo "${green}>>> Create the app 'crm'.${reset}"
-
 echo "${green}>>> Creating .gitignore${reset}"
 cp /tmp/django-boilerplate/.gitignore .
 
