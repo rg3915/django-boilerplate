@@ -17,7 +17,7 @@ source /tmp/django-boilerplate/functions.sh
 PROJECT=${1:-backend}
 
 PYTHON_VERSION=3.9.6
-DJANGO_VERSION=4.0
+DJANGO_VERSION=4.0.1
 USERNAME="rg3915"
 
 echo "${green}>>> Django: $DJANGO_VERSION.${reset}"
