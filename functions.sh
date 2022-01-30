@@ -29,6 +29,7 @@ install_django() {
     echo Django==$DJANGO_VERSION > requirements.txt
     pip freeze | grep dj-database-url >> requirements.txt
     pip freeze | grep django-extensions >> requirements.txt
+    pip freeze | grep django-localflavor >> requirements.txt
     pip freeze | grep django-seed >> requirements.txt
     pip freeze | grep django-widget-tweaks >> requirements.txt
     pip freeze | grep Faker >> requirements.txt
