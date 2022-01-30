@@ -16,7 +16,7 @@ source /tmp/django-boilerplate/functions.sh
 
 PROJECT=${1:-backend}
 
-PYTHON_VERSION=3.9.6
+PYTHON_VERSION=3.10.2
 DJANGO_VERSION=4.0.1
 USERNAME="rg3915"
 
