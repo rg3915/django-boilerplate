@@ -264,12 +264,8 @@ create_app_expense() {
 }
 
 create_superuser() {
-    read -p "Create superuser? [Y/n] " answer
-    answer=${answer:-Y}
-    if [[ $answer == 'Y' || $answer == 'y' ]]; then
-        echo "${green}>>> Creating a 'admin' user ...${reset}"
-        echo "${green}>>> The password must contain at least 8 characters.${reset}"
-        echo "${green}>>> Password suggestions: demodemo${reset}"
-        python manage.py createsuperuser --username='admin' --email=''
-    fi
+    echo "${green}>>> Creating a 'admin' user ...${reset}"
+    echo "${green}>>> The password must contain at least 8 characters.${reset}"
+    echo "${green}>>> Password suggestions: demodemo${reset}"
+    python manage.py createsuperuser --username='admin' --email=''
 }
