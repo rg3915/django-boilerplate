@@ -28,3 +28,6 @@ class Expense(TimeStampedModel):
 
     def get_absolute_url(self):
         return reverse_lazy('expense:expense_detail', kwargs={'pk': self.pk})
+
+    def get_fields_verbose_names(self):
+        return [{'name': field.verbose_name, 'value': getattr(self, field.name)} for field in self._meta.fields]

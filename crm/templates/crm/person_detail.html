@@ -2,10 +2,11 @@
 {% extends "base.html" %}
 
 {% block content %}
-  <h1>Detalhes</h1>
+  <h1>Detalhes de {{ object }}</h1>
 
   <ul>
-    <li><b>Nome:</b> {{ object.full_name }}</li>
-    <li><b>E-mail:</b> {{ object.email|default:'---' }}</li>
+    {% for field in object.get_fields_verbose_names %}
+      <li><b>{{ field.name }}:</b> {{ field.value|default:'---' }}</li>
+    {% endfor %}
   </ul>
 {% endblock content %}
