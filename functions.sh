@@ -69,7 +69,7 @@ edit_settings() {
     sed -i "s/{PROJECT}/$PROJECT/g" $PROJECT/settings.py
     sed -i "s/{DJANGO_VERSION}/$DJANGO_VERSION/g" $PROJECT/settings.py
 
-    sed -i "s/{LINK_VERSION}/4.0/g" $PROJECT/settings.py
+    sed -i "s/{LINK_VERSION}/5.0/g" $PROJECT/settings.py
     sed -i "s/# SETTINGS_IMPORT/from pathlib import Path/g" $PROJECT/settings.py
     sed -i "s/{SETTINGS_BASE_DIR}/BASE_DIR = Path(__file__).resolve().parent.parent/g" $PROJECT/settings.py
     sed -i "s/{DEFAULT_DBURL}/default_dburl = 'sqlite:\/\/\/' + str(BASE_DIR \/ 'db.sqlite3')/g" $PROJECT/settings.py

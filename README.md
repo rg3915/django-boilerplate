@@ -39,7 +39,7 @@ CRM Model
 Packages used in conjunction with Django.
 
 * [Python 3.10.2](https://www.python.org/downloads/)
-* [Django 4.0.*](https://www.djangoproject.com/)
+* [Django 5.0.*](https://www.djangoproject.com/)
 * [dj-database-url](https://pypi.org/project/dj-database-url/)
 * [django-extensions](https://django-extensions.readthedocs.io/en/latest/installation_instructions.html)
 * [django-localflavor](https://pypi.org/project/django-localflavor/)
