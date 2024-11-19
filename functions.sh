@@ -25,7 +25,8 @@ install_django() {
     # Install Django
     echo "${green}>>> Installing the Django${reset}"
     pip install -U pip
-    pip install django==$DJANGO_VERSION django-ninja dj-database-url django-extensions django-localflavor django-widget-tweaks django-seed isort python-decouple faker ipdb psycopg2-binary
+    pip install django==$DJANGO_VERSION django-ninja dj-database-url django-extensions django-localflavor django-widget-tweaks isort python-decouple faker ipdb psycopg2-binary
+    pip install git+https://github.com/rg3915/django-seed.git@main
     echo Django==$DJANGO_VERSION > requirements.txt
     pip freeze | grep django-ninja >> requirements.txt
     pip freeze | grep dj-database-url >> requirements.txt
